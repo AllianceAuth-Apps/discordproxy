@@ -13,6 +13,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [0.2.1] - 2021-11-16
+
+### Changed
+
+- Update deprecated code to remove deprecation warning from Discord Client / logout
+- Remove backport of asyncio.run for 3.6
+
+### Fixed
+
+- Does not show listen address in log
+
 ## [0.2.0] - 2021-11-16
 
 ### Changed
