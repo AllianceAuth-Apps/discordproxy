@@ -1,5 +1,5 @@
 stages:
-- lint
+- checks
 - test
 - deploy
 
@@ -11,8 +11,8 @@ before_script:
 - pip install tox
 
 pre-commit-check:
-  stage: lint
-  image: python:3.6-buster
+  stage: checks
+  image: python:3.8-buster
   variables:
     PRE_COMMIT_HOME: ${CI_PROJECT_DIR}/.cache/pre-commit
   cache:
@@ -22,25 +22,11 @@ pre-commit-check:
     - pip install pre-commit
     - pre-commit run --all-files
 
-lint-docs:
-  stage: lint
-  image: python:3.7-buster
+check-docs:
+  stage: checks
+  image: python:3.8-buster
   script:
   - tox -e docs
-
-test-36:
-  stage: test
-  image: python:3.6-buster
-  script:
-  - tox -e py36
-  - bash <(curl -s https://codecov.io/bash)
-
-test-37:
-  stage: test
-  image: python:3.7-buster
-  script:
-  - tox -e py37
-  - bash <(curl -s https://codecov.io/bash)
 
 test-38:
   stage: test
@@ -58,7 +44,7 @@ test-39:
 
 deploy-pypi:
   stage: deploy
-  image: python:3.7-buster
+  image: python:3.8-buster
 
   before_script:
     - pip install twine
