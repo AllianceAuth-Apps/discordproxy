@@ -1,6 +1,6 @@
 import logging
-import discord
 
+import discord
 
 logger = logging.getLogger(__name__)
 

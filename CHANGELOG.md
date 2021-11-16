@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Minimimum Python version bumped up to 3.8 due to dependency with discord.py
+- Added isort to pre-commit checks
 
 ## [0.1.0] - 2021-05-24
 

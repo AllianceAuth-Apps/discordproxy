@@ -1,10 +1,10 @@
 import grpc
 
 from discordproxy.discord_api_pb2 import (
+    Embed,
+    GetGuildChannelsRequest,
     SendChannelMessageRequest,
     SendDirectMessageRequest,
-    GetGuildChannelsRequest,
-    Embed,
 )
 from discordproxy.discord_api_pb2_grpc import DiscordApiStub
 from discordproxy.helpers import parse_error_details

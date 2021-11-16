@@ -2,11 +2,10 @@ from random import randint
 from unittest.mock import MagicMock
 
 import discord
-from discord.errors import NotFound, Forbidden
 import grpc
+from discord.errors import Forbidden, NotFound
 
 from discordproxy import discord_api_pb2
-
 
 mock_state = MagicMock(name="ConnectionState")
 mock_state.store_user = lambda data: discord.User(state=mock_state, data=data)

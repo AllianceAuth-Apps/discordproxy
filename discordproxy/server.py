@@ -7,9 +7,9 @@ import discord
 import grpc
 
 from discordproxy import __title__, __version__
-from discordproxy.discord_api_pb2_grpc import add_DiscordApiServicer_to_server
 from discordproxy.api import DiscordApi
 from discordproxy.config import setup_server
+from discordproxy.discord_api_pb2_grpc import add_DiscordApiServicer_to_server
 from discordproxy.discord_client import DiscordClient
 
 try:

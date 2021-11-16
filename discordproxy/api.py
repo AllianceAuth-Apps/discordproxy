@@ -1,9 +1,7 @@
 import discord
 from google.protobuf import json_format
 
-
-from discordproxy import discord_api_pb2_grpc
-from discordproxy import discord_api_pb2
+from discordproxy import discord_api_pb2, discord_api_pb2_grpc
 from discordproxy.decorators import handle_discord_exceptions, log_request
 
 

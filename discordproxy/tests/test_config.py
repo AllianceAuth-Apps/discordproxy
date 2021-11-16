@@ -1,10 +1,8 @@
-from pathlib import Path
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
-from discordproxy import config
-from discordproxy import constants
-
+from discordproxy import config, constants
 
 MODULE_PATH = "discordproxy.config"
 

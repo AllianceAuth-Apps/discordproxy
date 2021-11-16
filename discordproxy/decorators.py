@@ -5,7 +5,6 @@ import logging
 import discord
 import grpc
 
-
 logger = logging.getLogger(__name__)
 
 

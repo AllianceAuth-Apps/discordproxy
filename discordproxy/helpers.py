@@ -1,6 +1,6 @@
 """Helpers for gRPC clients"""
-from collections import namedtuple
 import json
+from collections import namedtuple
 
 import grpc
 

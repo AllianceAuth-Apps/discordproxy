@@ -1,6 +1,7 @@
 """This is an example for an async client. It sends 50 direct messages concurrently."""
 import asyncio
 import logging
+
 import grpc
 
 from discordproxy.discord_api_pb2 import SendDirectMessageRequest

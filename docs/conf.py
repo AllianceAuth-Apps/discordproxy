@@ -12,6 +12,7 @@
 #
 import os
 import sys
+
 from recommonmark.transform import AutoStructify
 
 sys.path.insert(0, os.path.split(os.path.dirname(os.path.abspath(__file__)))[0])
