@@ -3,14 +3,15 @@ import logging
 import logging.config
 import os
 from pathlib import Path
+from typing import Tuple
 
 from . import __version__, constants
 
 _LOG_FILE_NAME = "discordproxyserver.log"
 
 
-def setup_server(args_list: list) -> tuple:
-    """parses all command line arguments and configures logging"""
+def setup_server(args_list: list) -> Tuple[str, argparse.Namespace]:
+    """Parse all command line arguments and configures logging."""
     my_args = _parse_args(args_list)
     token = (
         os.environ.get("DISCORD_BOT_TOKEN") if my_args.token is None else my_args.token
@@ -22,8 +23,8 @@ def setup_server(args_list: list) -> tuple:
     return token, my_args
 
 
-def _parse_args(args_list: list) -> argparse.ArgumentParser:
-    """returns parsed command line arguments"""
+def _parse_args(args_list: list) -> argparse.Namespace:
+    """Return parsed command line arguments."""
     my_arg_parser = argparse.ArgumentParser(
         description="Server with HTTP API for sending messages to Discord",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
@@ -70,7 +71,7 @@ def _parse_args(args_list: list) -> argparse.ArgumentParser:
 
 
 def _logging_config(my_args) -> dict:
-    """returns dict to configure logging based on parsed args"""
+    """Generate logging configuration based on parsed args."""
     file_log_path_full = my_args.log_file_path
     filename = (
         Path(file_log_path_full) / _LOG_FILE_NAME

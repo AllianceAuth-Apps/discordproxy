@@ -1,3 +1,4 @@
+import argparse
 import asyncio
 import logging
 import signal
@@ -16,7 +17,10 @@ logger = logging.getLogger(__name__)
 discord.VoiceClient.warn_nacl = False
 
 
-async def shutdown_server(signal, server, discord_client):
+async def shutdown_server(
+    signal: signal.Signals, server: grpc.aio.server, discord_client: DiscordClient
+) -> None:
+    """Perform a graceful server shutdown."""
     logger.info("Received shutdown signal: %s", signal)
     logger.info("Logging out from Discord...")
     await discord_client.close()
@@ -24,7 +28,8 @@ async def shutdown_server(signal, server, discord_client):
     await server.stop(0)
 
 
-async def run_server(token: str, my_args) -> None:
+async def run_server(token: str, my_args: argparse.Namespace) -> None:
+    """Run the server until it is shutdown."""
     # init gRPC server
     server = grpc.aio.server()
     discord_client = DiscordClient()
@@ -49,7 +54,8 @@ async def run_server(token: str, my_args) -> None:
     logger.info("gRPC service has shut down")
 
 
-def main():
+def main() -> None:
+    """Start up the server."""
     logger.info(f"Starting {__title__} v{__version__}...")
     token, my_args = setup_server(sys.argv[1:])
     asyncio.run(run_server(token=token, my_args=my_args))
