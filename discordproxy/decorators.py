@@ -29,7 +29,7 @@ def handle_discord_exceptions(Response):
             try:
                 return await func(self, request, context)
             except discord.errors.HTTPException as ex:
-                logger.info(
+                logger.warning(
                     "%s: Discord HTTP exception: %s:\n%s",
                     func.__name__,
                     ex,
@@ -65,12 +65,12 @@ def _gen_grpc_error_details(status: int, code: int, text: str):
 
 
 def log_request(func):
-    """Logs every request"""
+    """Log every request."""
 
     async def decorated(self, request, context):
-        logger.info(
-            "Received request: %s: %s{\n%s}",
-            func.__name__,
+        logger.info("Received request: %s", func.__name__)
+        logger.debug(
+            "Received request content: %s{\n%s}",
             type(request).__name__,
             str(request),
         )

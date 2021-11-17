@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Minimimum Python version extented to include 3.7 due to dependency with discord.py
+- Log gRPC message content on DEBUG level, not INFO
+- All HTTP exceptions will be logged as WARNING
 
 ## [0.2.1] - 2021-11-16
 
