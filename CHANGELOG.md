@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [0.2.2] - 2021-11-17
+
+### Changed
+
+- Minimimum Python version extented to include 3.7 due to dependency with discord.py
+
 ## [0.2.1] - 2021-11-16
 
 ### Changed

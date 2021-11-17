@@ -28,6 +28,14 @@ check-docs:
   script:
   - tox -e docs
 
+test-37:
+  stage: test
+  image: python:3.7-buster
+  script:
+  - tox -e py37
+  - bash <(curl -s https://codecov.io/bash)
+
+
 test-38:
   stage: test
   image: python:3.8-buster
