@@ -1,38 +1,57 @@
-# from time import sleep
-# import unittest
-# import asyncio
-# from collections import namedtuple
+import asyncio
+import logging
+from collections import namedtuple
+from pathlib import Path
 
-# from aiounittest import AsyncTestCase
-# import grpc
+import grpc
+from asynctest import TestCase
 
-# from discordproxy.discord_api_pb2 import SendDirectMessageRequest
-# from discordproxy.discord_api_pb2_grpc import DiscordApiStub
-# from discordproxy.server import run_server
-# from .fixtures import DiscordClientStub
+from discordproxy.discord_api_pb2 import SendDirectMessageRequest
+from discordproxy.discord_api_pb2_grpc import DiscordApiStub
+from discordproxy.server import run_server, shutdown_server
+
+from .fixtures import DiscordClientStub
+
+MyArgsStub = namedtuple("MyArgsStub", ["host", "port"])
+
+logging.basicConfig(
+    filename=Path(__file__).with_suffix(".log"),
+    format="%(asctime)s - %(levelname)s - %(module)s:%(funcName)s - %(message)s",
+    filemode="w",
+    force=True,
+)
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
 
 
-# MyArgsStub = namedtuple("MyArgsStub", ["host", "port"])
+class TestEnd2End(TestCase):
+    async def setUp(self) -> None:
+        self.host = "localhost"
+        self.port = 50051
+        token = "dummy"
+        my_args = MyArgsStub(host=self.host, port=self.port)
+        self.server = grpc.aio.server()
+        self.discord_client = DiscordClientStub()
+        asyncio.create_task(
+            run_server(
+                token=token,
+                my_args=my_args,
+                server=self.server,
+                discord_client=self.discord_client,
+            )
+        )
+        await asyncio.sleep(1)
 
+    async def tearDown(self) -> None:
+        await shutdown_server(server=self.server, discord_client=self.discord_client)
 
-# class TestEnd2End(unittest.TestCase):
-#     def setUp(self) -> None:
-#         self.host = "127.0.0.1"
-#         self.port = 50051
-#         token = "dummy"
-#         my_args = MyArgsStub(host=self.host, port=self.port)
-#         discord_client = DiscordClientStub()
-#         self.loop = asyncio.get_event_loop()
-#         self.loop.run_until_complete(
-#             run_server(token=token, my_args=my_args, discord_client=discord_client)
-#         )
-
-#     def tearDown(self) -> None:
-#         self.loop.close()
-
-#     def test_make_call(self):
-#         sleep(5)
-#         channel = grpc.insecure_channel(f"{self.host}:{self.port}")
-#         client = DiscordApiStub(channel)
-#         request = SendDirectMessageRequest(user_id=1001, content="content")
-#         client.SendDirectMessage(request)
+    async def test_should_send_message_to_server(self):
+        # given
+        channel = grpc.aio.insecure_channel(f"{self.host}:{self.port}")
+        client = DiscordApiStub(channel)
+        request = SendDirectMessageRequest(user_id=1001, content="content")
+        # when
+        response = await client.SendDirectMessage(request, timeout=5)
+        # then
+        self.assertEqual(response.message.channel_id, 2010)
+        self.assertEqual(response.message.content, "content")

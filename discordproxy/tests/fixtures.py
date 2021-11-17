@@ -223,6 +223,9 @@ class DiscordClientStub:
     async def logout(self):
         pass
 
+    async def close(self):
+        pass
+
     async def fetch_channel(self, channel_id):
         if channel_id in CHANNELS:
             if channel_id in CHANNELS_FORBIDDEN:

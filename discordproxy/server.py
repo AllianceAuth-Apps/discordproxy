@@ -18,7 +18,9 @@ discord.VoiceClient.warn_nacl = False
 
 
 async def shutdown_server(
-    signal: signal.Signals, server: grpc.aio.server, discord_client: DiscordClient
+    server: grpc.aio.server,
+    discord_client: DiscordClient,
+    signal: signal.Signals = None,
 ) -> None:
     """Perform a graceful server shutdown."""
     logger.info("Received shutdown signal: %s", signal)
@@ -28,11 +30,18 @@ async def shutdown_server(
     await server.stop(0)
 
 
-async def run_server(token: str, my_args: argparse.Namespace) -> None:
+async def run_server(
+    token: str,
+    my_args: argparse.Namespace,
+    server: grpc.aio.server = None,
+    discord_client: DiscordClient = None,
+) -> None:
     """Run the server until it is shutdown."""
-    # init gRPC server
-    server = grpc.aio.server()
-    discord_client = DiscordClient()
+    # init server
+    if not server:
+        server = grpc.aio.server()
+    if not discord_client:
+        discord_client = DiscordClient()
     add_DiscordApiServicer_to_server(DiscordApi(discord_client), server)
     listen_addr = f"{my_args.host}:{my_args.port}"
     server.add_insecure_port(listen_addr)
@@ -43,7 +52,7 @@ async def run_server(token: str, my_args: argparse.Namespace) -> None:
         loop.add_signal_handler(
             s,
             lambda s=s: asyncio.ensure_future(
-                shutdown_server(s, server, discord_client)
+                shutdown_server(server, discord_client, s)
             ),
         )
     # start the server
@@ -51,6 +60,7 @@ async def run_server(token: str, my_args: argparse.Namespace) -> None:
     await server.start()
     asyncio.ensure_future(discord_client.start(token))
     await server.wait_for_termination()
+    # server has been shut down
     logger.info("gRPC service has shut down")
 
 

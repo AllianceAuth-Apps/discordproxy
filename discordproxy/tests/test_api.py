@@ -2,16 +2,11 @@ import json
 import logging
 
 import grpc
-
-# from aiounittest import AsyncTestCase
 from asynctest import TestCase
 
 from discordproxy import api, discord_api_pb2
 
 from .fixtures import DiscordClientErrorStub, DiscordClientStub, ServicerContextStub
-
-# from unittest.mock import MagicMock
-
 
 logging.basicConfig()
 
