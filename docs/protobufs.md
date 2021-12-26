@@ -67,6 +67,9 @@ Source: https://discord.com/developers/docs/resources/channel#channel-object
 | position | [int32](#int32) |  |  |
 | name | [string](#string) |  | tbd // |
 | topic | [string](#string) |  |  |
+| nsfw | [bool](#bool) |  |  |
+| last_message_id | [uint64](#uint64) |  |  |
+| parent_id | [uint64](#uint64) |  |  |
 
 
 

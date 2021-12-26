@@ -92,6 +92,12 @@ def discord_to_grpc_channel(
         topic = channel.topic
     except AttributeError:
         topic = None
+    if channel.type == discord.ChannelType.text:
+        nsfw = channel.is_nsfw()
+        last_message_id = channel.last_message_id
+    else:
+        nsfw = None
+        last_message_id = None
     return discord_api_pb2.Channel(
         id=channel.id,
         name=channel.name,
@@ -99,6 +105,9 @@ def discord_to_grpc_channel(
         guild_id=guild_id,
         position=channel.position,
         topic=topic,
+        nsfw=nsfw,
+        last_message_id=last_message_id,
+        parent_id=channel.category_id,
     )
 
 

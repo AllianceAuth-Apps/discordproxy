@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [0.3.0] - 2021-12-26
+
+### Added
+
+- Added more fields to the `Channel` object, e.g. `parent_id` to identify the category of a channel
+
 ## [0.2.2] - 2021-11-17
 
 ### Changed

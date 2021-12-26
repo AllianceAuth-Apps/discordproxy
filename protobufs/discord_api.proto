@@ -29,6 +29,9 @@ message Channel {
   // tbd //
   string name = 6;
   string topic = 7;
+  bool nsfw = 8;
+  uint64 last_message_id = 9;
+  uint64 parent_id = 10;
 }
 
 // Source: https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
