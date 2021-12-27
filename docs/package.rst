@@ -12,7 +12,13 @@ gRPC classes
 .. automodule:: discordproxy.discord_api_pb2
     :members:
 
-Client helpers
+Client
+--------------
+
+.. automodule:: discordproxy.client
+    :members:
+
+Helpers
 --------------
 
 .. automodule:: discordproxy.helpers
