@@ -16,19 +16,23 @@ DiscordClient is a class provided by Discord Proxy which aims to make it easy to
 
 ### Client example 1
 
-Here is a simple example for posting a "hello world" message in a channel:
+Here is a simple example for sending a direct message to a user:
 
 ```python
 from discordproxy.client import DiscordClient
 
 client = DiscordClient()
-client.create_channel_message(channel_id=123456789, content="Hello, world!")
+client.create_direct_message(user_id=123456789, content="Hello, world!")
 ```
 
 ```eval_rst
 .. hint::
     To test this script please replace the user ID with your own. Here is how you can find IDs on your Discord server: `Where can I find my User/Server/Message ID? <https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID->`_
 ```
+
+### Error handling 1
+
+If an error occurs a `DiscordError` exception will be raised.
 
 ## gRPC
 
@@ -60,7 +64,7 @@ with grpc.insecure_channel("localhost:50051") as channel:
     To test this script please replace the user ID with your own. Here is how you can find IDs on your Discord server: `Where can I find my User/Server/Message ID? <https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID->`_
 ```
 
-### Error handling
+### Error handling 2
 
 If a gRPC request fails a `grpc.RpcError` exception will be raised. RPC errors return the context of the request, consisting of two fields:
 

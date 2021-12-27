@@ -3,6 +3,12 @@ Python package
 
 Modules of the Discord Proxy package that are relevant for clients.
 
+Client
+--------------
+
+.. automodule:: discordproxy.client
+    :members:
+
 gRPC classes
 ------------
 
@@ -10,12 +16,6 @@ gRPC classes
     :members:
 
 .. automodule:: discordproxy.discord_api_pb2
-    :members:
-
-Client
---------------
-
-.. automodule:: discordproxy.client
     :members:
 
 Helpers

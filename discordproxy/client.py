@@ -9,6 +9,7 @@ from .discord_api_pb2 import (
     GetGuildChannelsRequest,
     Message,
     SendChannelMessageRequest,
+    SendDirectMessageRequest,
 )
 from .discord_api_pb2_grpc import DiscordApiStub
 from .helpers import parse_error_details
@@ -38,6 +39,9 @@ class DiscordClient:
         Args:
             guild_id: ID of guild to get the channel for
 
+        Raises:
+            DiscordError: Any eror
+
         Returns:
             Guild channels
         """
@@ -61,6 +65,9 @@ class DiscordClient:
             content: Text of the message
             embed: Embed of the message
 
+        Raises:
+            DiscordError: Any eror
+
         Returns:
             Created message
         """
@@ -73,6 +80,36 @@ class DiscordClient:
             )
             try:
                 response = client.SendChannelMessage(request)
+                return response.message
+            except grpc.RpcError as ex:
+                error_text = self._log_grpc_error(ex)
+                raise DiscordError(error_text)
+
+    def create_direct_message(
+        self, user_id: int, content: str = "", embed: Embed = None
+    ) -> Message:
+        """Create new direct message.
+
+        Args:
+            user_id: ID of user to create direct message for
+            content: Text of the message
+            embed: Embed of the message
+
+        Raises:
+            DiscordError: Any eror
+
+        Returns:
+            Created message
+        """
+        if not content and not embed:
+            raise ValueError("Either content or embed need to be specified.")
+        with grpc.insecure_channel(self.target, self.options) as grpc_channel:
+            client = DiscordApiStub(grpc_channel)
+            request = SendDirectMessageRequest(
+                content=content, user_id=user_id, embed=embed
+            )
+            try:
+                response = client.SendDirectMessage(request)
                 return response.message
             except grpc.RpcError as ex:
                 error_text = self._log_grpc_error(ex)

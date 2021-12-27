@@ -48,7 +48,7 @@ class TestFetchChannels(NoSocketsTestCase):
 @patch(MODULE_PATH + ".DiscordApiStub")
 @patch(MODULE_PATH + ".grpc.insecure_channel", spec=True)
 class TestCreateChannelMessage(NoSocketsTestCase):
-    def test_should_return_channels(self, mock_insecure_channel, mock_DiscordApiStub):
+    def test_should_return_message(self, mock_insecure_channel, mock_DiscordApiStub):
         # given
         message = Message(
             channel_id=1, content="alpha", embeds=[Embed(description="test")]
@@ -62,6 +62,42 @@ class TestCreateChannelMessage(NoSocketsTestCase):
             channel_id=message.channel_id,
             content=message.content,
             embed=message.embeds[0],
+        )
+        # then
+        self.assertEqual(result, message)
+
+    def test_should_raise_error(self, mock_insecure_channel, mock_DiscordApiStub):
+        # given
+        error = create_rpc_error()
+        mock_DiscordApiStub.return_value.SendChannelMessage.side_effect = error
+        client = DiscordClient()
+        # when/then
+        with self.assertRaises(DiscordError):
+            client.create_channel_message(channel_id=1, content="alpha")
+
+    def test_should_require_content_or_embed(
+        self, mock_insecure_channel, mock_DiscordApiStub
+    ):
+        # given
+        client = DiscordClient()
+        # when/then
+        with self.assertRaises(ValueError):
+            client.create_channel_message(channel_id=1)
+
+
+@patch(MODULE_PATH + ".DiscordApiStub")
+@patch(MODULE_PATH + ".grpc.insecure_channel", spec=True)
+class TestCreateDirectMessage(NoSocketsTestCase):
+    def test_should_return_message(self, mock_insecure_channel, mock_DiscordApiStub):
+        # given
+        message = Message(content="alpha", embeds=[Embed(description="test")])
+        mock_DiscordApiStub.return_value.SendDirectMessage.return_value.message = (
+            message
+        )
+        client = DiscordClient()
+        # when
+        result = client.create_direct_message(
+            user_id=1, content=message.content, embed=message.embeds[0]
         )
         # then
         self.assertEqual(result, message)

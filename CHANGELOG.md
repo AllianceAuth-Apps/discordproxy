@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [0.4.0] - 2021-12-27
+
+### Added
+
+- New client class `DiscordClient` providing a simple API for interacting with Discord as alternative to the more complex gRPC protocol.
+
 ## [0.3.0] - 2021-12-26
 
 ### Added
