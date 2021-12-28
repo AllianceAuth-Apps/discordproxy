@@ -9,6 +9,12 @@ Client
 .. automodule:: discordproxy.client
     :members:
 
+Exceptions
+--------------
+
+.. automodule:: discordproxy.exceptions
+    :members:
+
 gRPC classes
 ------------
 

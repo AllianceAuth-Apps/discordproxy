@@ -1,7 +1,8 @@
 from unittest.mock import Mock, patch
 
-from ..client import DiscordClient, DiscordProxyException, Message
+from ..client import DiscordClient, Message
 from ..discord_api_pb2 import Channel, Embed
+from ..exceptions import DiscordProxyException
 from .factories import create_discordproxy_channel, create_rpc_error
 from .helpers import NoSocketsTestCase
 
