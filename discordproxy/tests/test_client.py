@@ -106,11 +106,11 @@ class TestCreateDirectMessage(NoSocketsTestCase):
     def test_should_raise_error(self, mock_insecure_channel, mock_DiscordApiStub):
         # given
         error = create_rpc_error()
-        mock_DiscordApiStub.return_value.SendChannelMessage.side_effect = error
+        mock_DiscordApiStub.return_value.SendDirectMessage.side_effect = error
         client = DiscordClient()
         # when/then
         with self.assertRaises(DiscordProxyException):
-            client.create_channel_message(channel_id=1, content="alpha")
+            client.create_direct_message(user_id=1, content="alpha")
 
     def test_should_require_content_or_embed(
         self, mock_insecure_channel, mock_DiscordApiStub
@@ -119,4 +119,4 @@ class TestCreateDirectMessage(NoSocketsTestCase):
         client = DiscordClient()
         # when/then
         with self.assertRaises(ValueError):
-            client.create_channel_message(channel_id=1)
+            client.create_direct_message(user_id=1)

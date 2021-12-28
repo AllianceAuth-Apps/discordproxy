@@ -1,6 +1,4 @@
-from typing import Tuple
-
-import grpc
+from grpc import StatusCode as GrpcStatusCode
 
 from .helpers import parse_error_details
 
@@ -27,9 +25,9 @@ class DiscordProxyGrpcError(DiscordProxyException):
     and the Discord Proxy server.
     """
 
-    def __init__(self, status: grpc.StatusCode, details: str) -> None:
+    def __init__(self, status: GrpcStatusCode, details: str) -> None:
         super().__init__(details)
-        self._status = status.value
+        self._status = status
         self._details = details
 
     @property
@@ -38,9 +36,15 @@ class DiscordProxyGrpcError(DiscordProxyException):
         return self._details
 
     @property
-    def status(self) -> Tuple[int, str]:
+    def status(self) -> "GrpcStatusCode":
         """GRPC status code."""
         return self._status
+
+    def __str__(self) -> str:
+        return (
+            f"gRPC error. Status code: {self.status.name} - "
+            f"Error message: {self.details}"
+        )
 
 
 class DiscordProxyHttpError(DiscordProxyException):
@@ -69,3 +73,9 @@ class DiscordProxyHttpError(DiscordProxyException):
     def text(self) -> str:
         """Error message."""
         return self._text
+
+    def __str__(self) -> str:
+        return (
+            f"HTTP error from the Discord API. HTTP status code: {self.status} - "
+            f"JSON error code: {self.code} - Error message: {self.text}"
+        )
