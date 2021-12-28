@@ -52,6 +52,16 @@ except DiscordProxyException as ex:
     print(f"An error occured when trying to create a message: {ex}")
 ```
 
+### Timeouts
+
+All requests are synchronous and sometimes it can take a few seconds for a request to complete due to Discord rate limiting. However, they might be issues with the network or the Discord API, which might case requests to go on for a long time (the hard timeout on the client side is about 30 minutes). In order to build a robust application we recommend to use sensible timeouts with all requests. Note that this timeout must cover the complete duration it takes for a request to compete and should therefore not be set too short.
+
+You can define custom timeouts with when instanciating your client:
+
+```python
+client = DiscordClient(timeout=30)  # Defines a timeout of 30 seconds for all methods
+```
+
 ## gRPC
 
 Alternatively you can use the gRPC protocol directly in your code to interact with Discord. This approach is more complex and requires a deeper understanding of gRPC. But it will also give you the most flexibility with full access to all gRPC features.
@@ -166,9 +176,7 @@ except grpc.RpcError as e:
     For the documentation of all helpers see: :ref:`package:Helpers`
 ```
 
-### Timeouts
-
-All requests are synchronous and sometimes it can take a few seconds for a request to complete due to Discord rate limiting. However, they might be issues with the network or the Discord API, which might case requests to go on for a long time (the hard timeout on the client side is about 30 minutes). In order to build a robust application we recommend to use sensible timeouts with all requests. Note that this timeout must cover the complete duration it takes for a request to compete and should therefore not be set too short.
+### Timeouts 2
 
 Here is how to use timeout with requests to the Discord Proxy. All timeouts are in seconds:
 

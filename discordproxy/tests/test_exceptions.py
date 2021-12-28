@@ -25,8 +25,8 @@ class TestToDiscordProxyException(TestCase):
             {
                 "type": "HTTPException",
                 "status": 404,
-                "code": 50001,
-                "text": "User not found",
+                "code": 10013,
+                "text": "Unknown User",
             }
         )
         # when
@@ -34,8 +34,8 @@ class TestToDiscordProxyException(TestCase):
         # then
         self.assertIsInstance(result, DiscordProxyHttpError)
         self.assertEqual(result.status, 404)
-        self.assertEqual(result.code, 50001)
-        self.assertEqual(result.text, "User not found")
+        self.assertEqual(result.code, 10013)
+        self.assertEqual(result.text, "Unknown User")
 
     def test_should_return_grpc_exception(self):
         # given
@@ -54,13 +54,13 @@ class TestToDiscordProxyException(TestCase):
 class TestDiscordProxyHttpError(TestCase):
     def test_str(self):
         # given
-        ex = DiscordProxyHttpError(status=404, code=50001, text="User not found")
+        ex = DiscordProxyHttpError(status=404, code=10013, text="Unknown User")
         # when
         self.assertEqual(
             str(ex),
             (
                 "HTTP error from the Discord API. HTTP status code: 404 - "
-                "JSON error code: 50001 - Error message: User not found"
+                "JSON error code: 10013 - Error message: Unknown User"
             ),
         )
 

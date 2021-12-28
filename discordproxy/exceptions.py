@@ -19,10 +19,10 @@ class DiscordProxyException(Exception):
 
 
 class DiscordProxyGrpcError(DiscordProxyException):
-    """Error related to the gRPC protocol.
+    """gRPC error created by the gRPC protocol.
 
-    These are usually caused by network issues between the client
-    and the Discord Proxy server.
+    These are usually caused by issues with the Discord Proxy gRPC server,
+    e.g. a failed network connection.
     """
 
     def __init__(self, status: GrpcStatusCode, details: str) -> None:
@@ -48,7 +48,7 @@ class DiscordProxyGrpcError(DiscordProxyException):
 
 
 class DiscordProxyHttpError(DiscordProxyException):
-    """Error related to the Discord API.
+    """HTTP error created by the Discord API.
 
     These are usually caused by API errors on the Discord server.
     """

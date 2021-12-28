@@ -37,7 +37,7 @@ setup(
     install_requires=["discord.py>1.7,<2", "grpcio-tools"],
     entry_points={
         "console_scripts": [
-            "discordproxyserver=discordproxy.server:main",
+            "discordproxyserver=discordproxy._server:main",
         ],
     },
 )
