@@ -7,7 +7,7 @@ There are two different approaches on how to interact with Discord via Discord P
 
 ## DiscordClient
 
-DiscordClient is a class provided by Discord Proxy which aims to make it easy to interact with Discord in your code. Most of the complexity of the underlying gRPC protocol is hidden behind a simple API. We recommend this approach for most use cases.
+`DiscordClient` is a class provided by Discord Proxy which aims to make it easy to interact with Discord in your code. Most of the complexity of the underlying gRPC protocol is hidden behind a simple API.
 
 ```eval_rst
 .. seealso::
@@ -32,7 +32,25 @@ client.create_direct_message(user_id=123456789, content="Hello, world!")
 
 ### Error handling 1
 
-If an error occurs a `DiscordError` exception will be raised.
+There are two classes of errors which can occur:
+
+First, errors from the Discord API, e.g. that a user can not be found. These errors will generate a `DiscordProxyHttpError` exception.
+
+Second, errors from the network connection with the Discord Proxy server, e.g. when the server is not up or a timeout occurs. These errors will generate a `DiscordProxyGrpcError` exception.
+
+Both exceptions objects include additional details, e.g. the HTTP error code or the Discord specific JSON error code. Both exceptions are also inherited from `DiscordProxyException`, so for a very simple error handling you can just catch the top level exception.
+
+Here is the same example from before, but now with some rudimentary error handling:
+
+```python
+from discordproxy.client import DiscordClient, DiscordProxyException
+
+client = DiscordClient()
+try:
+    client.create_direct_message(user_id=123456789, content="Hello, world!")
+except DiscordProxyException as ex:
+    print(f"An error occured when trying to create a message: {ex}")
+```
 
 ## gRPC
 

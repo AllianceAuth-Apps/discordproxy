@@ -23,8 +23,7 @@ class TestParseErrorDetails(unittest.TestCase):
         result = parse_error_details(error)
         # then
         self.assertEqual(
-            result,
-            GrpcErrorDetails("HTTPException", 404, 50001, "User not found"),
+            result, GrpcErrorDetails("HTTPException", 404, 50001, "User not found")
         )
 
     def test_should_return_text_only(self):

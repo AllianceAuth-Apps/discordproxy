@@ -1,6 +1,6 @@
 from unittest.mock import Mock, patch
 
-from ..client import DiscordClient, DiscordError, Message
+from ..client import DiscordClient, DiscordProxyException, Message
 from ..discord_api_pb2 import Channel, Embed
 from .factories import create_discordproxy_channel, create_rpc_error
 from .helpers import NoSocketsTestCase
@@ -41,7 +41,7 @@ class TestFetchChannels(NoSocketsTestCase):
         mock_DiscordApiStub.return_value.GetGuildChannels.side_effect = error
         client = DiscordClient()
         # when/then
-        with self.assertRaises(DiscordError):
+        with self.assertRaises(DiscordProxyException):
             client.get_guild_channels(42)
 
 
@@ -72,7 +72,7 @@ class TestCreateChannelMessage(NoSocketsTestCase):
         mock_DiscordApiStub.return_value.SendChannelMessage.side_effect = error
         client = DiscordClient()
         # when/then
-        with self.assertRaises(DiscordError):
+        with self.assertRaises(DiscordProxyException):
             client.create_channel_message(channel_id=1, content="alpha")
 
     def test_should_require_content_or_embed(
@@ -108,7 +108,7 @@ class TestCreateDirectMessage(NoSocketsTestCase):
         mock_DiscordApiStub.return_value.SendChannelMessage.side_effect = error
         client = DiscordClient()
         # when/then
-        with self.assertRaises(DiscordError):
+        with self.assertRaises(DiscordProxyException):
             client.create_channel_message(channel_id=1, content="alpha")
 
     def test_should_require_content_or_embed(
