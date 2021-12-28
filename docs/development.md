@@ -14,7 +14,7 @@ There are two different approaches on how to interact with Discord via Discord P
     For the documentation of the DiscordClient class see: :ref:`package:Client`
 ```
 
-### Client example
+### Sending a message
 
 Here is a simple example for sending a direct message to a user:
 
@@ -28,6 +28,24 @@ client.create_direct_message(user_id=123456789, content="Hello, world!")
 ```eval_rst
 .. hint::
     To test this script please replace the user ID with your own. Here is how you can find IDs on your Discord server: `Where can I find my User/Server/Message ID? <https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID->`_
+```
+
+### Sending a message with an embed
+
+Messages often include attachments called embeds. You can construct your own embeds with the provided `Embed` class.
+
+```python
+from discordproxy.client import DiscordClient
+from discordproxy.discord_api_pb2 import Embed
+
+client = DiscordClient()
+embed = Embed(description="Hello, world!")
+client.create_direct_message(user_id=123456789, embed=embed)
+```
+
+```eval_rst
+.. seealso::
+    All common Discord objects are defined as Protobuf classes and can be found here: :doc:`protobufs`. These classes are used for creating objects for to methods of the `DiscordClient` and are returned by them.
 ```
 
 ### Error handling
@@ -92,11 +110,6 @@ with grpc.insecure_channel("localhost:50051") as channel:
     # send the request to Discord Proxy
     client.SendDirectMessage(request)
 
-```
-
-```eval_rst
-.. hint::
-    To test this script please replace the user ID with your own. Here is how you can find IDs on your Discord server: `Where can I find my User/Server/Message ID? <https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID->`_
 ```
 
 ### gRPC error handling
