@@ -14,7 +14,7 @@ There are two different approaches on how to interact with Discord via Discord P
     For the documentation of the DiscordClient class see: :ref:`package:Client`
 ```
 
-### Client example 1
+### Client example
 
 Here is a simple example for sending a direct message to a user:
 
@@ -30,7 +30,7 @@ client.create_direct_message(user_id=123456789, content="Hello, world!")
     To test this script please replace the user ID with your own. Here is how you can find IDs on your Discord server: `Where can I find my User/Server/Message ID? <https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID->`_
 ```
 
-### Error handling 1
+### Error handling
 
 There are two classes of errors which can occur:
 
@@ -54,19 +54,26 @@ except DiscordProxyException as ex:
 
 ### Timeouts
 
-All requests are synchronous and sometimes it can take a few seconds for a request to complete due to Discord rate limiting. However, they might be issues with the network or the Discord API, which might case requests to go on for a long time (the hard timeout on the client side is about 30 minutes). In order to build a robust application we recommend to use sensible timeouts with all requests. Note that this timeout must cover the complete duration it takes for a request to compete and should therefore not be set too short.
+All requests are synchronous and will usually complete almost instantly. However, sometimes it can take a few seconds longer for a request to complete due to Discord rate limiting, especially if you are running multiple request to Discord in parallel. There also might be issues with the network or the Discord API, which might case requests to go on for a long time (the hard timeout on the client side is about 30 minutes). In order to build a robust application we recommend to use sensible timeouts with all requests. Note that this timeout must cover the complete duration it takes for a request to compete and should therefore not be set too short.
 
-You can define custom timeouts with when instanciating your client:
+You can define custom timeouts with when instanciating your client. Further, when a timeout occures the specical exception ``DiscordProxyTimeoutError`` will be raised. Here is an example:
 
 ```python
+from discordproxy.client import DiscordClient, DiscordProxyTimeoutError
+
 client = DiscordClient(timeout=30)  # Defines a timeout of 30 seconds for all methods
+try:
+    client.create_direct_message(user_id=123456789, content="Hello, world!")
+except DiscordProxyTimeoutError as ex:
+    # handle timeout
+    ...
 ```
 
 ## gRPC
 
 Alternatively you can use the gRPC protocol directly in your code to interact with Discord. This approach is more complex and requires a deeper understanding of gRPC. But it will also give you the most flexibility with full access to all gRPC features.
 
-### Client example 2
+### gRPC client example
 
 Here is a hello code example for a gRPC client that is sending a direct "hello world" message to a user:
 
@@ -92,7 +99,7 @@ with grpc.insecure_channel("localhost:50051") as channel:
     To test this script please replace the user ID with your own. Here is how you can find IDs on your Discord server: `Where can I find my User/Server/Message ID? <https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID->`_
 ```
 
-### Error handling 2
+### gRPC error handling
 
 If a gRPC request fails a `grpc.RpcError` exception will be raised. RPC errors return the context of the request, consisting of two fields:
 
@@ -176,7 +183,7 @@ except grpc.RpcError as e:
     For the documentation of all helpers see: :ref:`package:Helpers`
 ```
 
-### Timeouts 2
+### gRPC timeouts
 
 Here is how to use timeout with requests to the Discord Proxy. All timeouts are in seconds:
 
@@ -188,3 +195,7 @@ except grpc.RpcError as e:
 ```
 
 Should a timeout be triggered the client will receive a `grpc.RpcError` with status code `DEADLINE_EXCEEDED`.
+
+## Rate limiting
+
+The Discord API is imposing rate limiting to all requests. Discord Proxy will automatically adhere to those rate limits by suspending a request until it can be sent. This can in certain situations result in requests taking a longer time to complete. If you need to complete your Discord request within a certain time, please see the sections about how to set custom timeouts.

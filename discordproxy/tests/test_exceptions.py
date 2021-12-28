@@ -6,6 +6,7 @@ import grpc
 from ..exceptions import (
     DiscordProxyGrpcError,
     DiscordProxyHttpError,
+    DiscordProxyTimeoutError,
     to_discord_proxy_exception,
 )
 
@@ -49,6 +50,17 @@ class TestToDiscordProxyException(TestCase):
         self.assertIsInstance(result, DiscordProxyGrpcError)
         self.assertIs(result.status, grpc.StatusCode.ABORTED)
         self.assertEqual(result.details, "text")
+
+    def test_should_return_timeout_exception(self):
+        # given
+        error = grpc.RpcError()
+        error.code = lambda: grpc.StatusCode.DEADLINE_EXCEEDED
+        error.details = lambda: "text"
+        # when
+        # when
+        result = to_discord_proxy_exception(error)
+        # then
+        self.assertIsInstance(result, DiscordProxyTimeoutError)
 
 
 class TestDiscordProxyHttpError(TestCase):

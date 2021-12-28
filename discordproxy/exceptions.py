@@ -7,11 +7,14 @@ def to_discord_proxy_exception(ex: Exception) -> "DiscordProxyException":
     if not hasattr(ex, "details"):
         return ex
     details = parse_error_details(ex)
+    status = ex.code()
     if details.type == "HTTPException":
         return DiscordProxyHttpError(
             status=details.status, code=details.code, text=details.text
         )
-    return DiscordProxyGrpcError(status=ex.code(), details=ex.details())
+    elif status is GrpcStatusCode.DEADLINE_EXCEEDED:
+        return DiscordProxyTimeoutError(status=status, details=ex.details())
+    return DiscordProxyGrpcError(status=status, details=ex.details())
 
 
 class DiscordProxyException(Exception):
@@ -45,6 +48,10 @@ class DiscordProxyGrpcError(DiscordProxyException):
             f"gRPC error. Status code: {self.status.name} - "
             f"Error message: {self.details}"
         )
+
+
+class DiscordProxyTimeoutError(DiscordProxyGrpcError):
+    """The gRPC method timed out."""
 
 
 class DiscordProxyHttpError(DiscordProxyException):
