@@ -6,9 +6,9 @@ from pathlib import Path
 import grpc
 from asynctest import TestCase
 
+from discordproxy._server import run_server, shutdown_server
 from discordproxy.discord_api_pb2 import SendDirectMessageRequest
 from discordproxy.discord_api_pb2_grpc import DiscordApiStub
-from discordproxy.server import run_server, shutdown_server
 
 from .fixtures import DiscordClientStub
 

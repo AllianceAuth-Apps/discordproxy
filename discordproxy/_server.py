@@ -8,10 +8,10 @@ import discord
 import grpc
 
 from discordproxy import __title__, __version__
-from discordproxy.api import DiscordApi
-from discordproxy.config import setup_server
+from discordproxy._api import DiscordApi
+from discordproxy._config import setup_server
+from discordproxy._discord_client import DiscordClient
 from discordproxy.discord_api_pb2_grpc import add_DiscordApiServicer_to_server
-from discordproxy.discord_client import DiscordClient
 
 logger = logging.getLogger(__name__)
 discord.VoiceClient.warn_nacl = False

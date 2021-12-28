@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 from typing import Tuple
 
-from . import __version__, constants
+from . import __version__, _constants
 
 _LOG_FILE_NAME = "discordproxyserver.log"
 
@@ -37,10 +37,10 @@ def _parse_args(args_list: list) -> argparse.Namespace:
         ),
     )
     my_arg_parser.add_argument(
-        "--host", default=constants.DEFAULT_HOST, help="server host address"
+        "--host", default=_constants.DEFAULT_HOST, help="server host address"
     )
     my_arg_parser.add_argument(
-        "--port", type=int, default=constants.DEFAULT_PORT, help="server port"
+        "--port", type=int, default=_constants.DEFAULT_PORT, help="server port"
     )
     my_arg_parser.add_argument(
         "--log-console-level",

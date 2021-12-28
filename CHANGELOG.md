@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - New client class `DiscordClient` providing a simple API for interacting with Discord as alternative to the more complex gRPC protocol.
 
+### Changed
+
+- Renamed modules that constitue the server and should not be imported by client code to show they are private
+
 ## [0.3.0] - 2021-12-26
 
 ### Added

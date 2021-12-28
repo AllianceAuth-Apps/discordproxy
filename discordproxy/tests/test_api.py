@@ -4,7 +4,7 @@ import logging
 import grpc
 from asynctest import TestCase
 
-from discordproxy import api, discord_api_pb2
+from discordproxy import _api, discord_api_pb2
 
 from .fixtures import DiscordClientErrorStub, DiscordClientStub, ServicerContextStub
 
@@ -33,7 +33,7 @@ class TestMapDiscordErrors(TestCase):
         }
         for status_code, grpc_code in codes_mapping.items():
             # given
-            my_api = api.DiscordApi(DiscordClientErrorStub(status_code))
+            my_api = _api.DiscordApi(DiscordClientErrorStub(status_code))
             # when
             result = await my_api.SendDirectMessage(self.request, self.context)
             # then
@@ -45,7 +45,7 @@ class TestMapDiscordErrors(TestCase):
 
     async def test_should_return_error_details(self):
         # given
-        my_api = api.DiscordApi(DiscordClientErrorStub(404, "my_message"))
+        my_api = _api.DiscordApi(DiscordClientErrorStub(404, "my_message"))
         # when
         await my_api.SendDirectMessage(self.request, self.context)
         # then
@@ -57,7 +57,7 @@ class TestMapDiscordErrors(TestCase):
 
 class TestApi(TestCase):
     def setUp(self) -> None:
-        self.my_api = api.DiscordApi(DiscordClientStub())
+        self.my_api = _api.DiscordApi(DiscordClientStub())
         self.context = ServicerContextStub()
         self.my_embed = discord_api_pb2.Embed(
             title="title",

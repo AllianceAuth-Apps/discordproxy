@@ -2,7 +2,7 @@ import discord
 from google.protobuf import json_format
 
 from discordproxy import discord_api_pb2, discord_api_pb2_grpc
-from discordproxy.decorators import handle_discord_exceptions, log_request
+from discordproxy._decorators import handle_discord_exceptions, log_request
 
 
 def discord_to_grpc_embed(embed) -> discord_api_pb2.Embed:
