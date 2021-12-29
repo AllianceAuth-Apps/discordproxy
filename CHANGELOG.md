@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [0.4.1] - 2021-12-29
+
+### Changed
+
+- Include tests in destribution package
+
 ## [0.4.0] - 2021-12-29
 
 ### Added
