@@ -86,11 +86,11 @@ def _handle_uncaught_exception(
 async def _shutdown_server(
     grpc_server: grpc.aio.server,
     discord_client: DiscordClient,
-    signal: signal.Signals = None,
+    my_signal: signal.Signals = None,
 ) -> None:
     """Perform a graceful server shutdown."""
-    if signal:
-        logger.info("Received shutdown signal: %s", signal)
+    if my_signal:
+        logger.info("Received shutdown signal: %s", my_signal)
     logger.info("Logging out from Discord...")
     await discord_client.close()
     logger.info("Shutting down gRPC service...")
@@ -99,7 +99,7 @@ async def _shutdown_server(
 
 def main() -> None:
     """Start up the server."""
-    logger.info(f"Starting {__title__} v{__version__}...")
+    logger.info("Starting %s v%s...", __title__, __version__)
     token, my_args = setup_server(sys.argv[1:])
     asyncio.run(run_server(token=token, my_args=my_args))
 

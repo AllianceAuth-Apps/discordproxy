@@ -1,5 +1,5 @@
-appname = discord-bridge
-package = discordbridge
+appname = discordproxy
+package = discordproxy
 help:
 	@echo "Makefile for $(appname)"
 

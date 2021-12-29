@@ -13,15 +13,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-## [0.4.0] - 2021-12-27
+## [0.4.0] - 2021-12-29
 
 ### Added
 
-- New client class `DiscordClient` providing a simple API for interacting with Discord as alternative to the more complex gRPC protocol.
+- New client class `DiscordClient` provides a simple API for interacting with Discord as alternative to the more complex gRPC protocol.
 
 ### Changed
 
-- Renamed modules that constitue the server and should not be imported by client code to show they are private
+- Renamed modules that constitute the server to show they are private and should not be imported by client code
 
 ### Fixed
 

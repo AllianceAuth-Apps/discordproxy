@@ -51,7 +51,7 @@ class DiscordClient:
                 params = self._build_rpc_method_params(request)
                 response = client.GetGuildChannels(**params)
             except Exception as ex:
-                raise to_discord_proxy_exception(ex)
+                raise to_discord_proxy_exception(ex) from ex
         return response.channels
 
     def create_channel_message(
@@ -78,7 +78,7 @@ class DiscordClient:
                 params = self._build_rpc_method_params(request)
                 response = client.SendChannelMessage(**params)
             except Exception as ex:
-                raise to_discord_proxy_exception(ex)
+                raise to_discord_proxy_exception(ex) from ex
         return response.message
 
     def create_direct_message(
@@ -105,7 +105,7 @@ class DiscordClient:
                 params = self._build_rpc_method_params(request)
                 response = client.SendDirectMessage(**params)
             except Exception as ex:
-                raise to_discord_proxy_exception(ex)
+                raise to_discord_proxy_exception(ex) from ex
         return response.message
 
     def _build_rpc_method_params(self, request) -> dict:

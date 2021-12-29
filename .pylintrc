@@ -1,5 +1,5 @@
 [MASTER]
-ignore-patterns=test_.*.py,__init__.py,generate_.*.py
+ignore-patterns=test_.*.py,__init__.py,generate_.*.py,discord_api_pb2*
 
 [BASIC]
 # Good variable names which should always be accepted, separated by a comma
