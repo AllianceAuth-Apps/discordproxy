@@ -5,6 +5,8 @@ import logging
 import discord
 import grpc
 
+from discordproxy import discord_api_pb2
+
 logger = logging.getLogger(__name__)
 
 
@@ -68,7 +70,7 @@ def log_request(func):
     """Log every request."""
 
     async def decorated(self, request, context):
-        logger.info("Received request: %s", func.__name__)
+        logger.info("Received request: %s", _request_to_info_str(request))
         logger.debug(
             "Received request content: %s{\n%s}",
             type(request).__name__,
@@ -77,3 +79,16 @@ def log_request(func):
         return await func(self, request, context)
 
     return decorated
+
+
+def _request_to_info_str(request):
+    name = type(request).__name__
+    if isinstance(request, discord_api_pb2.SendDirectMessageRequest):
+        params = f"(user_id={request.user_id})"
+    elif isinstance(request, discord_api_pb2.SendChannelMessageRequest):
+        params = f"(channel_id={request.channel_id})"
+    elif isinstance(request, discord_api_pb2.GetGuildChannelsRequest):
+        params = f"(guild_id={request.guild_id})"
+    else:
+        params = ""
+    return f"{name}{params}"

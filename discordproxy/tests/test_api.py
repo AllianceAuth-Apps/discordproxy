@@ -6,7 +6,7 @@ from asynctest import TestCase
 
 from discordproxy import _api, discord_api_pb2
 
-from .fixtures import DiscordClientErrorStub, DiscordClientStub, ServicerContextStub
+from .stubs import DiscordClientErrorStub, DiscordClientStub, ServicerContextStub
 
 logging.basicConfig()
 

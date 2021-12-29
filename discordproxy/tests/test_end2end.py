@@ -6,11 +6,11 @@ from pathlib import Path
 import grpc
 from asynctest import TestCase
 
-from discordproxy._server import run_server, shutdown_server
+from discordproxy._server import _shutdown_server, run_server
 from discordproxy.discord_api_pb2 import SendDirectMessageRequest
 from discordproxy.discord_api_pb2_grpc import DiscordApiStub
 
-from .fixtures import DiscordClientStub
+from .stubs import DiscordClientStub
 
 MyArgsStub = namedtuple("MyArgsStub", ["host", "port"])
 
@@ -30,20 +30,22 @@ class TestEnd2End(TestCase):
         self.port = 50051
         token = "dummy"
         my_args = MyArgsStub(host=self.host, port=self.port)
-        self.server = grpc.aio.server()
+        self.grpc_server = grpc.aio.server()
         self.discord_client = DiscordClientStub()
         asyncio.create_task(
             run_server(
                 token=token,
                 my_args=my_args,
-                server=self.server,
+                grpc_server=self.grpc_server,
                 discord_client=self.discord_client,
             )
         )
         await asyncio.sleep(1)
 
     async def tearDown(self) -> None:
-        await shutdown_server(server=self.server, discord_client=self.discord_client)
+        await _shutdown_server(
+            grpc_server=self.grpc_server, discord_client=self.discord_client
+        )
 
     async def test_should_send_message_to_server(self):
         # given
