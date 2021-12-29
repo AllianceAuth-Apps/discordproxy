@@ -23,6 +23,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Renamed modules that constitue the server and should not be imported by client code to show they are private
 
+### Fixed
+
+- Server keeps running after an unrecoverably Discord client exception occurs, e.g. login failed due to invalid token
+
 ## [0.3.0] - 2021-12-26
 
 ### Added

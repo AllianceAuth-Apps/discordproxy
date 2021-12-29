@@ -1,11 +1,14 @@
 import argparse
 import asyncio
+import functools
 import logging
 import signal
 import sys
+import traceback
 
 import discord
 import grpc
+from discord.errors import ClientException
 
 from discordproxy import __title__, __version__
 from discordproxy._api import DiscordApi
@@ -17,13 +20,31 @@ logger = logging.getLogger(__name__)
 discord.VoiceClient.warn_nacl = False
 
 
+def handle_exception(
+    loop, context, server: grpc.aio.server, discord_client: DiscordClient
+):
+    """Handle all uncaught exceptions raised from tasks."""
+    msg = context.get("exception", context["message"])
+    if isinstance(msg, Exception):
+        traceback_str = "".join(traceback.format_tb(msg.__traceback__))
+        logging.error("%s\n%s", msg, traceback_str)
+    if isinstance(msg, ClientException):
+        logging.critical("Shutting down due to Discord client error: %s", msg)
+        asyncio.create_task(
+            shutdown_server(server=server, discord_client=discord_client)
+        )
+    else:
+        loop.default_exception_handler(context)
+
+
 async def shutdown_server(
     server: grpc.aio.server,
     discord_client: DiscordClient,
     signal: signal.Signals = None,
 ) -> None:
     """Perform a graceful server shutdown."""
-    logger.info("Received shutdown signal: %s", signal)
+    if signal:
+        logger.info("Received shutdown signal: %s", signal)
     logger.info("Logging out from Discord...")
     await discord_client.close()
     logger.info("Shutting down gRPC service...")
@@ -51,14 +72,17 @@ async def run_server(
     for s in signals:
         loop.add_signal_handler(
             s,
-            lambda s=s: asyncio.ensure_future(
-                shutdown_server(server, discord_client, s)
-            ),
+            lambda s=s: asyncio.create_task(shutdown_server(server, discord_client, s)),
         )
+    loop.set_exception_handler(
+        functools.partial(
+            handle_exception, server=server, discord_client=discord_client
+        )
+    )
     # start the server
-    logger.info("Starting gRPC service on %s", listen_addr)
     await server.start()
-    asyncio.ensure_future(discord_client.start(token))
+    logger.info("Started gRPC service on %s", listen_addr)
+    asyncio.create_task(discord_client.start(token))
     await server.wait_for_termination()
     # server has been shut down
     logger.info("gRPC service has shut down")
