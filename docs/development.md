@@ -61,7 +61,8 @@ Both exceptions objects include additional details, e.g. the HTTP error code or 
 Here is the same example from before, but now with some rudimentary error handling:
 
 ```python
-from discordproxy.client import DiscordClient, DiscordProxyException
+from discordproxy.client import DiscordClient
+from discordproxy.exception import DiscordProxyException
 
 client = DiscordClient()
 try:
@@ -136,6 +137,8 @@ except grpc.RpcError as e:
 
 #### gRPC status codes
 
+Here is how HTTP error codes are mapped against gRPC status codes:
+
 HTTP response code | gRPC status code
 -- | --
 400 (BAD REQUEST) | `INVALID_ARGUMENT`
@@ -147,6 +150,11 @@ HTTP response code | gRPC status code
 502 (GATEWAY UNAVAILABLE) | `UNAVAILABLE`
 504 (GATEWAY TIMEOUT) | `DEADLINE_EXCEEDED`
 5xx (SERVER ERROR) | `INTERNAL`
+
+```eval_rst
+.. seealso::
+    `Status codes and their use in gRPC <https://grpc.github.io/grpc/core/md_doc_statuscodes.html>`_.
+```
 
 #### gRPC details
 

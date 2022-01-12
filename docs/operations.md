@@ -61,6 +61,8 @@ supervisorctl status discordproxy
 
 It should say "RUNNING".
 
+To verify your installation was successful we recommend to [test your server](#test-discord-proxy-server).
+
 ### Stand-alone installation
 
 This section describes how to install Discord Proxy as standalone server.
@@ -126,6 +128,21 @@ ln -s /home/discordproxy/discordproxyserver.conf /etc/supervisor/conf.d
 supervisorctl reload
 ```
 
+To verify your installation was successful we recommend to [test your server](#test-discord-proxy-server).
+
+### Test Discord Proxy server
+
+To verify your Discord Proxy server is up and running send a direct message to yourself with the CLI tool (replace the number below with your own user ID):
+
+```bash
+discordproxymessage direct 12345678 "test"
+```
+
+```eval_rst
+.. hint::
+    Here is how you can find IDs on your Discord server: `Where can I find my User/Server/Message ID? <https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID->`_
+```
+
 ## Server configuration
 
 Discord Proxy is designed to run via [supervisor](https://pypi.org/project/supervisor/) and can be configured with the below arguments. It comes with sensible defaults and will in most cases only need the Discord bot token to operate.
@@ -157,3 +174,15 @@ optional arguments:
                         folder (default: None)
   --version             show the program version and exit
 ```
+
+## Tools
+
+Discord Proxy comes with a simple tool for sending messages to your Discord server from the command line. The main purpose of this tool is to check that the server is functioning correctly.
+
+Here is how to send a direct message to a user:
+
+```bash
+discordproxymessage direct 12345678 "hi!"
+```
+
+The number is the user ID of the user to sent a message to. For more information run the command with the `-h` option.

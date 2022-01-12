@@ -9,6 +9,7 @@ from ..exceptions import (
     DiscordProxyTimeoutError,
     to_discord_proxy_exception,
 )
+from .factories import create_rpc_error
 
 
 class TestToDiscordProxyException(TestCase):
@@ -20,9 +21,7 @@ class TestToDiscordProxyException(TestCase):
 
     def test_should_return_http_exception(self):
         # given
-        error = grpc.RpcError()
-        error.code = lambda: grpc.StatusCode.NOT_FOUND
-        error.details = lambda: json.dumps(
+        details = json.dumps(
             {
                 "type": "HTTPException",
                 "status": 404,
@@ -30,6 +29,7 @@ class TestToDiscordProxyException(TestCase):
                 "text": "Unknown User",
             }
         )
+        error = create_rpc_error(code=grpc.StatusCode.NOT_FOUND, details=details)
         # when
         result = to_discord_proxy_exception(error)
         # then
@@ -40,10 +40,7 @@ class TestToDiscordProxyException(TestCase):
 
     def test_should_return_grpc_exception(self):
         # given
-        error = grpc.RpcError()
-        error.code = lambda: grpc.StatusCode.ABORTED
-        error.details = lambda: "text"
-        # when
+        error = create_rpc_error(code=grpc.StatusCode.ABORTED, details="text")
         # when
         result = to_discord_proxy_exception(error)
         # then
@@ -53,9 +50,7 @@ class TestToDiscordProxyException(TestCase):
 
     def test_should_return_timeout_exception(self):
         # given
-        error = grpc.RpcError()
-        error.code = lambda: grpc.StatusCode.DEADLINE_EXCEEDED
-        error.details = lambda: "text"
+        error = create_rpc_error(code=grpc.StatusCode.DEADLINE_EXCEEDED, details="text")
         # when
         # when
         result = to_discord_proxy_exception(error)

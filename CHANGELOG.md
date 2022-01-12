@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [0.5.0] - 2022-01-12
+
+### Added
+
+- Tool for sending messages from the command line
+
 ## [0.4.1] - 2021-12-29
 
 ### Changed

@@ -40,7 +40,9 @@ class DiscordProxyGrpcError(DiscordProxyException):
 
     @property
     def status(self) -> "GrpcStatusCode":
-        """GRPC status code."""
+        """GRPC status code. See also:
+        `Status codes and their use in gRPC <https://grpc.github.io/grpc/core/md_doc_statuscodes.html>`_
+        """
         return self._status
 
     def __str__(self) -> str:

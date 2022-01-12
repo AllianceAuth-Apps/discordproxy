@@ -23,15 +23,19 @@ def create_discordproxy_channel(**kwargs) -> Channel:
     return Channel(**kwargs)
 
 
-def create_rpc_error():
+def create_rpc_error(**kwargs):
     error = grpc.RpcError()
-    error.code = lambda: grpc.StatusCode.NOT_FOUND
-    error.details = lambda: json.dumps(
-        {
-            "type": "HTTPException",
-            "status": 404,
-            "code": 50001,
-            "text": "User not found",
-        }
-    )
+    if "code" not in kwargs:
+        kwargs["code"] = grpc.StatusCode.NOT_FOUND
+    error.code = lambda: kwargs["code"]
+    if "details" not in kwargs:
+        kwargs["details"] = json.dumps(
+            {
+                "type": "HTTPException",
+                "status": 404,
+                "code": 50001,
+                "text": "User not found",
+            }
+        )
+    error.details = lambda: kwargs["details"]
     return error

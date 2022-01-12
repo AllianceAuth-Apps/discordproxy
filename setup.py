@@ -38,6 +38,7 @@ setup(
     entry_points={
         "console_scripts": [
             "discordproxyserver=discordproxy._server:main",
+            "discordproxymessage=discordproxy._cli:main",
         ],
     },
 )
