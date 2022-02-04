@@ -32,9 +32,10 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     python_requires="~=3.7",
-    install_requires=["discord.py>1.7,<2", "grpcio-tools"],
+    install_requires=["py-cord>=1.7.3,<2", "grpcio-tools"],
     entry_points={
         "console_scripts": [
             "discordproxyserver=discordproxy._server:main",

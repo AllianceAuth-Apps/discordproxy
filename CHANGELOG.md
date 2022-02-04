@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [1.0.0] - 2022-02-04
+
+>**Important update notes**<br>When upgrading from a previous version you need to uninstall discord.py **before** installing this new version, e.g. by running `pip uninstall discord.py`
+
+## Changed
+
+- Now using py-cord instead of the no longer maintained discord.py library. This should reduce conflicts with the new version for the aa-discordbot.
+- Added support for Python 3.10
+
 ## [0.5.0] - 2022-01-12
 
 ### Added
