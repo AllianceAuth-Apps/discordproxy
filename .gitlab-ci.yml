@@ -35,7 +35,6 @@ test-37:
   - tox -e py37
   - bash <(curl -s https://codecov.io/bash)
 
-
 test-38:
   stage: test
   image: python:3.8-buster
@@ -48,6 +47,13 @@ test-39:
   image: python:3.9-buster
   script:
   - tox -e py39
+  - bash <(curl -s https://codecov.io/bash)
+
+test-310:
+  stage: test
+  image: python:3.10-buster
+  script:
+  - tox -e py310
   - bash <(curl -s https://codecov.io/bash)
 
 deploy-pypi:
