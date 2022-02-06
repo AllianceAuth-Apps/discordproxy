@@ -62,7 +62,7 @@ Here is the same example from before, but now with some rudimentary error handli
 
 ```python
 from discordproxy.client import DiscordClient
-from discordproxy.exception import DiscordProxyException
+from discordproxy.exceptions import DiscordProxyException
 
 client = DiscordClient()
 try:
