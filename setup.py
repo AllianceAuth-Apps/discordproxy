@@ -35,7 +35,10 @@ setup(
         "Programming Language :: Python :: 3.10",
     ],
     python_requires="~=3.7",
-    install_requires=["py-cord>=1.7.3,<2", "grpcio-tools"],
+    install_requires=[
+        "py-cord>=1.7.3,<2",
+        "grpcio-tools!=1.45.0",  # 1.45.0 has a yanked dependency
+    ],
     entry_points={
         "console_scripts": [
             "discordproxyserver=discordproxy._server:main",
