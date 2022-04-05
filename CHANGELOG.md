@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [1.0.1] - 2022-04-05
+
+### Fixed
+
+- Excluding grpcio-tools v1.45.0 as dependency, which in turn has a broken dependecy
+
+Thanks to @ppfeufer for the contribution!
+
 ## [1.0.0] - 2022-02-04
 
 >**Important update notes**<br>When upgrading from a previous version you need to uninstall discord.py **before** installing this new version, e.g. by running `pip uninstall discord.py`
