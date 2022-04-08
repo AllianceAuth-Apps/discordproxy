@@ -31,6 +31,7 @@ check-docs:
 test-37:
   stage: test
   image: python:3.7-buster
+  needs: []
   script:
   - tox -e py37
   - bash <(curl -s https://codecov.io/bash)
@@ -38,6 +39,7 @@ test-37:
 test-38:
   stage: test
   image: python:3.8-buster
+  needs: []
   script:
   - tox -e py38
   - bash <(curl -s https://codecov.io/bash)
@@ -45,6 +47,7 @@ test-38:
 test-39:
   stage: test
   image: python:3.9-buster
+  needs: []
   script:
   - tox -e py39
   - bash <(curl -s https://codecov.io/bash)
@@ -52,6 +55,7 @@ test-39:
 test-310:
   stage: test
   image: python:3.10-buster
+  needs: []
   script:
   - tox -e py310
   - bash <(curl -s https://codecov.io/bash)
