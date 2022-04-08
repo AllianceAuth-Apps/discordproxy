@@ -5,10 +5,13 @@ import sys
 from discordproxy.client import DiscordClient
 from discordproxy.exceptions import DiscordProxyException
 
+from . import _constants
+
 
 def main():
     my_args = _parse_args(sys.argv[1:])
-    client = DiscordClient()
+    target = f"{my_args.host}:{my_args.port}"
+    client = DiscordClient(target=target)
     try:
         if my_args.type == "direct":
             client.create_direct_message(
@@ -46,6 +49,12 @@ def _parse_args(sys_args: list) -> argparse.Namespace:
             "ID of the recipient, i.e. the user ID for direct messages "
             "or the channel ID for channel messages"
         ),
+    )
+    parser.add_argument(
+        "--host", default=_constants.DEFAULT_HOST, help="server host address"
+    )
+    parser.add_argument(
+        "--port", type=int, default=_constants.DEFAULT_PORT, help="server port"
     )
     parser.add_argument("content", help="content of the message to be sent")
     return parser.parse_args(sys_args)

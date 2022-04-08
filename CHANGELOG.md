@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [1.1.0] - 2022-04-08
+
+### Added
+
+- Ability to specify port and host when using the **discordproxymessage** tool
+
 ## [1.0.1] - 2022-04-05
 
 ### Fixed
