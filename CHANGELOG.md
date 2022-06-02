@@ -13,6 +13,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [1.2.1] - 2022-06-02
+
+### Changed
+
+- Add pycord 2 to CI pipeline
+- Refactor pycord API adaptor
+
 ## [1.2.0] - 2022-06-02
 
 ### Added
