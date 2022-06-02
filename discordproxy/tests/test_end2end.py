@@ -18,7 +18,6 @@ logging.basicConfig(
     filename=Path(__file__).with_suffix(".log"),
     format="%(asctime)s - %(levelname)s - %(module)s:%(funcName)s - %(message)s",
     filemode="w",
-    force=True,
 )
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)

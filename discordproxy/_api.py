@@ -35,11 +35,15 @@ def discord_to_grpc_embed(embed) -> discord_api_pb2.Embed:
 
 
 def discord_to_grpc_message(message) -> discord_api_pb2.Message:
+    try:
+        avatar_hash = message.author._avatar
+    except AttributeError:
+        avatar_hash = message.author.avatar  # backward compatibility with pycord 1.7
     author = discord_api_pb2.User(
         id=message.author.id,
         username=message.author.name,
         discriminator=message.author.discriminator,
-        avatar=message.author.avatar,
+        avatar=avatar_hash,
         bot=message.author.bot,
         system=message.author.system,
     )
@@ -76,7 +80,8 @@ def discord_to_grpc_channel_type(
         discord.ChannelType.group: discord_api_pb2.Channel.Type.GROUP_DM,
         discord.ChannelType.category: discord_api_pb2.Channel.Type.GUILD_CATEGORY,
         discord.ChannelType.news: discord_api_pb2.Channel.Type.GUILD_NEWS,
-        discord.ChannelType.store: discord_api_pb2.Channel.Type.GUILD_STORE,
+        # REMOVED FROM API
+        # discord.ChannelType.store: discord_api_pb2.Channel.Type.GUILD_STORE,
     }
     return type_map.get(channel_type, discord_api_pb2.Channel.Type.UNDEFINED)
 
@@ -119,7 +124,7 @@ class DiscordApi(discord_api_pb2_grpc.DiscordApiServicer):
     @log_request
     @handle_discord_exceptions(discord_api_pb2.SendChannelMessageResponse)
     async def SendChannelMessage(self, request, context):
-        channel = await self.discord_client.fetch_channel(channel_id=request.channel_id)
+        channel = await self.discord_client.fetch_channel(request.channel_id)
         message = await self._send_message_to_channel(request, channel)
         return discord_api_pb2.SendChannelMessageResponse(
             message=discord_to_grpc_message(message)
@@ -128,7 +133,7 @@ class DiscordApi(discord_api_pb2_grpc.DiscordApiServicer):
     @log_request
     @handle_discord_exceptions(discord_api_pb2.SendDirectMessageResponse)
     async def SendDirectMessage(self, request, context):
-        user = await self.discord_client.fetch_user(user_id=request.user_id)
+        user = await self.discord_client.fetch_user(request.user_id)
         channel = await user.create_dm()
         message = await self._send_message_to_channel(request, channel)
         return discord_api_pb2.SendDirectMessageResponse(

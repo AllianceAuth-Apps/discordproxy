@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [1.2.0] - 2022-06-02
+
+### Added
+
+- Added experimental support for py-cord 2.0, which currently is in beta. This means that Discord Proxy now works with both py-cord 1.7 and py-cord 2.0. While this has not been tested explicitely, this should resolve the conflict with allianceauth-discordbot 3. (#1)
+
 ## [1.1.0] - 2022-04-08
 
 ### Added

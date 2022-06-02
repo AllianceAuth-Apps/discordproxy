@@ -4,7 +4,7 @@ help:
 	@echo "Makefile for $(appname)"
 
 coverage:
-	coverage run -m unittest discover && coverage html && coverage report -m
+	coverage run -m unittest discover -f -v && coverage html && coverage report -m
 
 proto:
 	python -m grpc_tools.protoc -I protobufs --python_out=discordproxy --grpc_python_out=discordproxy discord_api.proto
