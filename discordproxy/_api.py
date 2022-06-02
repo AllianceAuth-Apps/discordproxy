@@ -35,15 +35,18 @@ def discord_to_grpc_embed(embed) -> discord_api_pb2.Embed:
 
 
 def discord_to_grpc_message(message) -> discord_api_pb2.Message:
-    try:
-        avatar_hash = message.author._avatar
-    except AttributeError:
-        avatar_hash = message.author.avatar  # backward compatibility with pycord 1.7
+    def user_avatar_adapter(user) -> str:
+        """Get user's avatar hash. Works with both old and new pycord API."""
+        version_info = discord.version_info
+        if version_info.major < 2:
+            return user.avatar  # works with pycord 1 only.
+        return user.avatar.key
+
     author = discord_api_pb2.User(
         id=message.author.id,
         username=message.author.name,
         discriminator=message.author.discriminator,
-        avatar=avatar_hash,
+        avatar=user_avatar_adapter(message.author),
         bot=message.author.bot,
         system=message.author.system,
     )
