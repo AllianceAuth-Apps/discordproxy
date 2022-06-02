@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Add pycord 2 to CI pipeline
 - Refactor pycord API adaptor
+- Removed `Channel.Type.GUILD_STORE` since it is no longer supported by the API
 
 ## [1.2.0] - 2022-06-02
 

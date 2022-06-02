@@ -617,8 +617,7 @@ Source: https://discord.com/developers/docs/resources/user#user-object
 | GUILD_VOICE | 3 |  |
 | GROUP_DM | 4 |  |
 | GUILD_CATEGORY | 5 |  |
-| GUILD_NEWS | 6 |  |
-| GUILD_STORE | 7 |  |
+| GUILD_NEWS | 6 | GUILD_STORE = 7; NO LONGER SUPORTED IN API |
 
 
 
