@@ -48,43 +48,43 @@ check-docs:
   needs: []
   image: python:3.10-bullseye
 
-test-py37-pycord17
+test-py37-pycord17:
   extends: .test-py37
   script:
   - tox -e py37-pycord17
   - bash <(curl -s https://codecov.io/bash)
 
-test-py38-pycord17
+test-py38-pycord17:
   extends: .test-py38
   script:
   - tox -e py38-pycord17
   - bash <(curl -s https://codecov.io/bash)
 
-test-py38-pycord20
+test-py38-pycord20:
   extends: .test-py38
   script:
   - tox -e py38-pycord20
   - bash <(curl -s https://codecov.io/bash)
 
-test-py39-pycord17
+test-py39-pycord17:
   extends: .test-py39
   script:
   - tox -e py39-pycord17
   - bash <(curl -s https://codecov.io/bash)
 
-test-py39-pycord20
+test-py39-pycord20:
   extends: .test-py39
   script:
   - tox -e py39-pycord20
   - bash <(curl -s https://codecov.io/bash)
 
-test-py310-pycord17
+test-py310-pycord17:
   extends: .test-py310
   script:
   - tox -e py310-pycord17
   - bash <(curl -s https://codecov.io/bash)
 
-test-py310-pycord20
+test-py310-pycord20:
   extends: .test-py310
   script:
   - tox -e py310-pycord20
