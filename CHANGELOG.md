@@ -11,9 +11,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Automatic dark and light mode for Sphinx docs
-
 ### Fixed
+
+## [1.2.2] - 2022-06-18
+
+### Changed
+
+- Automatic dark and light mode for Sphinx docs
+- Add wheel to PyPI deployment
 
 ## [1.2.1] - 2022-06-02
 
