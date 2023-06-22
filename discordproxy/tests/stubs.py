@@ -225,6 +225,12 @@ class DiscordGuild:
 
 
 class DiscordClientStub:
+    """A stub representing a Discord client.
+
+    Args:
+    - bot_user_id: ID the bot users (as defined in USERS_DATA)
+    """
+
     def __init__(self, bot_user_id=1001) -> None:
         self.bot_user_id = bot_user_id
 
@@ -272,7 +278,7 @@ class ServicerContextStub:
 
 
 class DiscordClientErrorStub(DiscordClientStub):
-    """Stub for testing maping of Discord errors to gRPC errors"""
+    """Stub for testing mapping of Discord errors to gRPC errors"""
 
     def __init__(self, status_code, message="") -> None:
         self._status_code = status_code
