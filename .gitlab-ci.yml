@@ -28,11 +28,6 @@ check-docs:
   script:
   - tox -e docs
 
-.test-py37:
-  stage: test
-  needs: []
-  image: python:3.7-bullseye
-
 .test-py38:
   stage: test
   needs: []
@@ -47,12 +42,6 @@ check-docs:
   stage: test
   needs: []
   image: python:3.10-bullseye
-
-test-py37-pycord17:
-  extends: .test-py37
-  script:
-  - tox -e py37-pycord17
-  - bash <(curl -s https://codecov.io/bash)
 
 test-py38-pycord17:
   extends: .test-py38

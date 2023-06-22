@@ -1,9 +1,8 @@
 import json
 import logging
+from unittest import IsolatedAsyncioTestCase
 
 import grpc
-from asynctest import TestCase
-
 from discordproxy import _api, discord_api_pb2
 
 from .stubs import DiscordClientErrorStub, DiscordClientStub, ServicerContextStub
@@ -11,7 +10,7 @@ from .stubs import DiscordClientErrorStub, DiscordClientStub, ServicerContextStu
 logging.basicConfig()
 
 
-class TestMapDiscordErrors(TestCase):
+class TestMapDiscordErrors(IsolatedAsyncioTestCase):
     def setUp(self) -> None:
         self.request = discord_api_pb2.SendDirectMessageRequest(
             user_id=666, content="content"
@@ -55,7 +54,7 @@ class TestMapDiscordErrors(TestCase):
         self.assertEqual(details["text"], "my_message")
 
 
-class TestApi(TestCase):
+class TestApi(IsolatedAsyncioTestCase):
     def setUp(self) -> None:
         self.my_api = _api.DiscordApi(DiscordClientStub())
         self.context = ServicerContextStub()

@@ -1,8 +1,7 @@
 import os
 
-from setuptools import find_packages, setup
-
 from discordproxy import __version__
+from setuptools import find_packages, setup
 
 # read the contents of your README file
 this_directory = os.path.abspath(os.path.dirname(__file__))
@@ -29,12 +28,11 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
     ],
-    python_requires="~=3.7",
+    python_requires=">=3.8",
     install_requires=[
         "py-cord>=1.7.3,<3",
         "grpcio-tools!=1.45.0",  # 1.45.0 has a yanked dependency

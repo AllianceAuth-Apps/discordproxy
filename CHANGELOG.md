@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Dropped support for Python 3.7
+
 ### Fixed
 
 ## [1.2.2] - 2022-06-18

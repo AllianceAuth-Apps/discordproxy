@@ -2,10 +2,9 @@ import asyncio
 import logging
 from collections import namedtuple
 from pathlib import Path
+from unittest import IsolatedAsyncioTestCase
 
 import grpc
-from asynctest import TestCase
-
 from discordproxy._server import _shutdown_server, run_server
 from discordproxy.discord_api_pb2 import SendDirectMessageRequest
 from discordproxy.discord_api_pb2_grpc import DiscordApiStub
@@ -23,8 +22,8 @@ logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 
-class TestEnd2End(TestCase):
-    async def setUp(self) -> None:
+class TestEnd2End(IsolatedAsyncioTestCase):
+    async def asyncSetUp(self) -> None:
         self.host = "localhost"
         self.port = 50051
         token = "dummy"
