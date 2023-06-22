@@ -1,8 +1,8 @@
 import json
 import logging
+from unittest import IsolatedAsyncioTestCase
 
 import grpc
-from asynctest import TestCase
 
 from discordproxy import _api, discord_api_pb2
 
@@ -11,7 +11,7 @@ from .stubs import DiscordClientErrorStub, DiscordClientStub, ServicerContextStu
 logging.basicConfig()
 
 
-class TestMapDiscordErrors(TestCase):
+class TestMapDiscordErrors(IsolatedAsyncioTestCase):
     def setUp(self) -> None:
         self.request = discord_api_pb2.SendDirectMessageRequest(
             user_id=666, content="content"
@@ -55,7 +55,7 @@ class TestMapDiscordErrors(TestCase):
         self.assertEqual(details["text"], "my_message")
 
 
-class TestApi(TestCase):
+class TestApi(IsolatedAsyncioTestCase):
     def setUp(self) -> None:
         self.my_api = _api.DiscordApi(DiscordClientStub())
         self.context = ServicerContextStub()
@@ -107,7 +107,7 @@ class TestApi(TestCase):
     async def test_should_send_direct_message(self):
         # given
         request = discord_api_pb2.SendDirectMessageRequest(
-            user_id=1001, content="content"
+            user_id=1002, content="content"
         )
         # when
         result = await self.my_api.SendDirectMessage(
@@ -120,7 +120,7 @@ class TestApi(TestCase):
     async def test_should_send_direct_message_with_embed(self):
         # given
         request = discord_api_pb2.SendDirectMessageRequest(
-            user_id=1001, embed=self.my_embed
+            user_id=1002, embed=self.my_embed
         )
         # when
         result = await self.my_api.SendDirectMessage(
@@ -133,7 +133,7 @@ class TestApi(TestCase):
     async def test_should_send_direct_message_with_content_and_embed(self):
         # given
         request = discord_api_pb2.SendDirectMessageRequest(
-            user_id=1001, content="content", embed=self.my_embed
+            user_id=1002, content="content", embed=self.my_embed
         )
         # when
         result = await self.my_api.SendDirectMessage(
@@ -156,3 +156,22 @@ class TestApi(TestCase):
         self.assertSetEqual(
             {obj.id for obj in result.channels}, {2001, 2002, 2051, 2100}
         )
+
+
+class TestApi2(IsolatedAsyncioTestCase):
+    def setUp(self) -> None:
+        self.my_api = _api.DiscordApi(DiscordClientStub(bot_user_id=1101))
+        self.context = ServicerContextStub()
+
+    async def test_should_send_direct_message(self):
+        # given
+        request = discord_api_pb2.SendDirectMessageRequest(
+            user_id=1002, content="content"
+        )
+        # when
+        result = await self.my_api.SendDirectMessage(
+            request=request, context=self.context
+        )
+        # then
+        self.assertIsInstance(result, discord_api_pb2.SendDirectMessageResponse)
+        self.assertEqual(result.message.content, "content")

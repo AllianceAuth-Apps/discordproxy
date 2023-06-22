@@ -6,7 +6,7 @@ from unittest.mock import Mock, patch
 
 from discord.errors import LoginFailure
 
-from .._server import _handle_uncaught_exception
+from discordproxy._server import _handle_uncaught_exception
 
 SERVER_MODULE = "discordproxy._server"
 

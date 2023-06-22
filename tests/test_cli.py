@@ -2,8 +2,9 @@ from unittest.mock import patch
 
 import grpc
 
-from .._cli import main
-from ..exceptions import to_discord_proxy_exception
+from discordproxy._cli import main
+from discordproxy.exceptions import to_discord_proxy_exception
+
 from .factories import create_rpc_error
 from .helpers import NoSocketsTestCase
 

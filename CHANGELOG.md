@@ -7,11 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - yyyy-mm-dd
 
+## [1.3.0] - 2023-06-22
+
 ### Added
 
 ### Changed
 
+- Dropped support for Python 3.7
+- Migrated to PEP 621
+- Removed support for Pycord 1.x
+- Added support for Python 3.11
+
 ### Fixed
+
+- SendChannelMessage: Unexpected exception: 'NoneType' object has no attribute 'key':
 
 ## [1.2.2] - 2022-06-18
 
