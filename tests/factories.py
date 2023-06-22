@@ -2,7 +2,7 @@ import json
 
 import grpc
 
-from ..discord_api_pb2 import Channel
+from discordproxy.discord_api_pb2 import Channel
 
 
 def id_generator() -> int:

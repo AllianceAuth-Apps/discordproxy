@@ -3,12 +3,13 @@ from unittest import TestCase
 
 import grpc
 
-from ..exceptions import (
+from discordproxy.exceptions import (
     DiscordProxyGrpcError,
     DiscordProxyHttpError,
     DiscordProxyTimeoutError,
     to_discord_proxy_exception,
 )
+
 from .factories import create_rpc_error
 
 
