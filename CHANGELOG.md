@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- SendChannelMessage: Unexpected exception: 'NoneType' object has no attribute 'key':
+
 ## [1.2.2] - 2022-06-18
 
 ### Changed

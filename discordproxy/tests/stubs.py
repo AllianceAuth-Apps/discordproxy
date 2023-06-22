@@ -42,6 +42,13 @@ USERS_DATA = [
         "discriminator": "discriminator-forbidden",
         "avatar": "avatar-forbidden",
     },
+    {
+        "id": 1101,
+        "username": "my-bot-2",
+        "discriminator": "discriminator-my-bot-2",
+        "avatar": None,
+        "bot": True,
+    },
 ]
 USERS_DATA_BY_ID = obj_dict_by_id(USERS_DATA)
 USERS = obj_list_2_dict(
@@ -157,8 +164,9 @@ class DiscordClientResponseStub:
 
 
 class DiscordChannel:
-    def __init__(self, id) -> None:
+    def __init__(self, id, bot_user_id=1001) -> None:
         self.channel = CHANNELS[id]
+        self.bot_user_id = bot_user_id
 
     async def send(self, content, embed=None):
         if content:
@@ -183,24 +191,24 @@ class DiscordChannel:
             "pinned": False,
             "attachments": [],
             "embeds": [embed.to_dict()] if embed else [],
-            "author": USERS_DATA_BY_ID[1001],
+            "author": USERS_DATA_BY_ID[self.bot_user_id],
         }
         if isinstance(self.channel, discord.TextChannel):
             data["guild_id"] = self.channel.guild.id
-            data["member"] = MEMBERS_DATA_BY_ID[1001]
+            data["member"] = MEMBERS_DATA_BY_ID[self.bot_user_id]
 
         return discord.Message(state=mock_state, channel=self.channel, data=data)
 
 
 class DiscordUser:
-    def __init__(self, id) -> None:
+    def __init__(self, id, bot_user_id=1001) -> None:
         self.user = USERS[id]
+        self.bot_user_id = bot_user_id
 
     async def create_dm(self):
         if self.user.id in USERS_FORBIDDEN:
-            return DiscordChannel(2100)
-        else:
-            return DiscordChannel(2010)
+            return DiscordChannel(2100, bot_user_id=self.bot_user_id)
+        return DiscordChannel(2010, bot_user_id=self.bot_user_id)
 
 
 class DiscordGuild:
@@ -217,6 +225,9 @@ class DiscordGuild:
 
 
 class DiscordClientStub:
+    def __init__(self, bot_user_id=1001) -> None:
+        self.bot_user_id = bot_user_id
+
     async def start(self, *args, **kwargs):
         pass
 
@@ -239,7 +250,7 @@ class DiscordClientStub:
 
     async def fetch_user(self, user_id):
         if user_id in USERS:
-            return DiscordUser(id=user_id)
+            return DiscordUser(id=user_id, bot_user_id=self.bot_user_id)
         raise NotFound(response=DiscordClientResponseStub(404), message="Unknown user")
 
     async def fetch_guild(self, guild_id):

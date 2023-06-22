@@ -40,7 +40,7 @@ def discord_to_grpc_message(message) -> discord_api_pb2.Message:
         version_info = discord.version_info
         if version_info.major < 2:
             return user.avatar  # works with pycord 1 only.
-        return user.avatar.key
+        return user.avatar.key if user.avatar else ""
 
     author = discord_api_pb2.User(
         id=message.author.id,
