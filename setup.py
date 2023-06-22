@@ -1,7 +1,8 @@
 import os
 
-from discordproxy import __version__
 from setuptools import find_packages, setup
+
+from discordproxy import __version__
 
 # read the contents of your README file
 this_directory = os.path.abspath(os.path.dirname(__file__))

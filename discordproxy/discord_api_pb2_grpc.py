@@ -6,8 +6,7 @@ from . import discord_api_pb2 as discord__api__pb2
 
 
 class DiscordApiStub(object):
-    """Provides access to the Discord API
-    """
+    """Provides access to the Discord API"""
 
     def __init__(self, channel):
         """Constructor.
@@ -16,123 +15,155 @@ class DiscordApiStub(object):
             channel: A grpc.Channel.
         """
         self.SendChannelMessage = channel.unary_unary(
-                '/discord_api.DiscordApi/SendChannelMessage',
-                request_serializer=discord__api__pb2.SendChannelMessageRequest.SerializeToString,
-                response_deserializer=discord__api__pb2.SendChannelMessageResponse.FromString,
-                )
+            "/discord_api.DiscordApi/SendChannelMessage",
+            request_serializer=discord__api__pb2.SendChannelMessageRequest.SerializeToString,
+            response_deserializer=discord__api__pb2.SendChannelMessageResponse.FromString,
+        )
         self.SendDirectMessage = channel.unary_unary(
-                '/discord_api.DiscordApi/SendDirectMessage',
-                request_serializer=discord__api__pb2.SendDirectMessageRequest.SerializeToString,
-                response_deserializer=discord__api__pb2.SendDirectMessageResponse.FromString,
-                )
+            "/discord_api.DiscordApi/SendDirectMessage",
+            request_serializer=discord__api__pb2.SendDirectMessageRequest.SerializeToString,
+            response_deserializer=discord__api__pb2.SendDirectMessageResponse.FromString,
+        )
         self.GetGuildChannels = channel.unary_unary(
-                '/discord_api.DiscordApi/GetGuildChannels',
-                request_serializer=discord__api__pb2.GetGuildChannelsRequest.SerializeToString,
-                response_deserializer=discord__api__pb2.GetGuildChannelsResponse.FromString,
-                )
+            "/discord_api.DiscordApi/GetGuildChannels",
+            request_serializer=discord__api__pb2.GetGuildChannelsRequest.SerializeToString,
+            response_deserializer=discord__api__pb2.GetGuildChannelsResponse.FromString,
+        )
 
 
 class DiscordApiServicer(object):
-    """Provides access to the Discord API
-    """
+    """Provides access to the Discord API"""
 
     def SendChannelMessage(self, request, context):
-        """Send a message to a guild channel
-        """
+        """Send a message to a guild channel"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def SendDirectMessage(self, request, context):
-        """Send a direct message to a user
-        """
+        """Send a direct message to a user"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def GetGuildChannels(self, request, context):
-        """Get the list of channel for a guild
-        """
+        """Get the list of channel for a guild"""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
 
 def add_DiscordApiServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SendChannelMessage': grpc.unary_unary_rpc_method_handler(
-                    servicer.SendChannelMessage,
-                    request_deserializer=discord__api__pb2.SendChannelMessageRequest.FromString,
-                    response_serializer=discord__api__pb2.SendChannelMessageResponse.SerializeToString,
-            ),
-            'SendDirectMessage': grpc.unary_unary_rpc_method_handler(
-                    servicer.SendDirectMessage,
-                    request_deserializer=discord__api__pb2.SendDirectMessageRequest.FromString,
-                    response_serializer=discord__api__pb2.SendDirectMessageResponse.SerializeToString,
-            ),
-            'GetGuildChannels': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetGuildChannels,
-                    request_deserializer=discord__api__pb2.GetGuildChannelsRequest.FromString,
-                    response_serializer=discord__api__pb2.GetGuildChannelsResponse.SerializeToString,
-            ),
+        "SendChannelMessage": grpc.unary_unary_rpc_method_handler(
+            servicer.SendChannelMessage,
+            request_deserializer=discord__api__pb2.SendChannelMessageRequest.FromString,
+            response_serializer=discord__api__pb2.SendChannelMessageResponse.SerializeToString,
+        ),
+        "SendDirectMessage": grpc.unary_unary_rpc_method_handler(
+            servicer.SendDirectMessage,
+            request_deserializer=discord__api__pb2.SendDirectMessageRequest.FromString,
+            response_serializer=discord__api__pb2.SendDirectMessageResponse.SerializeToString,
+        ),
+        "GetGuildChannels": grpc.unary_unary_rpc_method_handler(
+            servicer.GetGuildChannels,
+            request_deserializer=discord__api__pb2.GetGuildChannelsRequest.FromString,
+            response_serializer=discord__api__pb2.GetGuildChannelsResponse.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'discord_api.DiscordApi', rpc_method_handlers)
+        "discord_api.DiscordApi", rpc_method_handlers
+    )
     server.add_generic_rpc_handlers((generic_handler,))
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class DiscordApi(object):
-    """Provides access to the Discord API
-    """
+    """Provides access to the Discord API"""
 
     @staticmethod
-    def SendChannelMessage(request,
+    def SendChannelMessage(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/discord_api.DiscordApi/SendChannelMessage',
+            "/discord_api.DiscordApi/SendChannelMessage",
             discord__api__pb2.SendChannelMessageRequest.SerializeToString,
             discord__api__pb2.SendChannelMessageResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def SendDirectMessage(request,
+    def SendDirectMessage(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/discord_api.DiscordApi/SendDirectMessage',
+            "/discord_api.DiscordApi/SendDirectMessage",
             discord__api__pb2.SendDirectMessageRequest.SerializeToString,
             discord__api__pb2.SendDirectMessageResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def GetGuildChannels(request,
+    def GetGuildChannels(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/discord_api.DiscordApi/GetGuildChannels',
+            "/discord_api.DiscordApi/GetGuildChannels",
             discord__api__pb2.GetGuildChannelsRequest.SerializeToString,
             discord__api__pb2.GetGuildChannelsResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )

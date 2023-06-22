@@ -3,6 +3,7 @@ import logging
 from unittest import IsolatedAsyncioTestCase
 
 import grpc
+
 from discordproxy import _api, discord_api_pb2
 
 from .stubs import DiscordClientErrorStub, DiscordClientStub, ServicerContextStub
