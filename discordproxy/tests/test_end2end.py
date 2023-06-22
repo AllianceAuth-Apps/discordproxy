@@ -41,7 +41,7 @@ class TestEnd2End(IsolatedAsyncioTestCase):
         )
         await asyncio.sleep(1)
 
-    async def tearDown(self) -> None:
+    async def asyncTearDown(self) -> None:
         await _shutdown_server(
             grpc_server=self.grpc_server, discord_client=self.discord_client
         )
