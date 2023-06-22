@@ -15,17 +15,17 @@ pre-commit-check:
     - pip install pre-commit
     - pre-commit run --all-files
 
-check-docs:
-  stage: checks
-  image: python:3.10-bullseye
-  script:
-  - tox -e docs
-
 .test:
   stage: test
   before_script:
     - python -V
     - pip install tox
+
+test-docs:
+  extends: .test
+  image: python:3.10-bullseye
+  script:
+  - tox -e docs
 
 test-py38:
   extends: .test
