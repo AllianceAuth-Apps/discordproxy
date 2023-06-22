@@ -1,4 +1,4 @@
 """Proxy server for accessing the Discord API via gRPC."""
 
 __title__ = "Discord Proxy"
-__version__ = "1.3.0dev1"
+__version__ = "1.3.0"
