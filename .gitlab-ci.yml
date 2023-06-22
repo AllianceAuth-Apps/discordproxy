@@ -3,16 +3,9 @@ stages:
 - test
 - deploy
 
-before_script:
-- apt-get update
-- apt-get install redis-server -y
-- redis-server --daemonize yes
-- python -V
-- pip install tox
-
 pre-commit-check:
   stage: checks
-  image: python:3.8-bullseye
+  image: python:3.10-bullseye
   variables:
     PRE_COMMIT_HOME: ${CI_PROJECT_DIR}/.cache/pre-commit
   cache:
@@ -24,71 +17,51 @@ pre-commit-check:
 
 check-docs:
   stage: checks
-  image: python:3.8-bullseye
+  image: python:3.10-bullseye
   script:
   - tox -e docs
 
-.test-py38:
+.test:
   stage: test
-  needs: []
+  before_script:
+    - python -V
+    - pip install tox
+
+test-py38:
+  extends: .test
   image: python:3.8-bullseye
+  script:
+  - tox -e py38
+  - bash <(curl -s https://codecov.io/bash)
 
-.test-py39:
-  stage: test
-  needs: []
+test-py39:
+  extends: .test
   image: python:3.9-bullseye
+  script:
+  - tox -e py39
+  - bash <(curl -s https://codecov.io/bash)
 
-.test-py310:
-  stage: test
-  needs: []
+test-py310:
+  extends: .test
   image: python:3.10-bullseye
-
-test-py38-pycord17:
-  extends: .test-py38
   script:
-  - tox -e py38-pycord17
+  - tox -e py310
   - bash <(curl -s https://codecov.io/bash)
 
-test-py38-pycord20:
-  extends: .test-py38
+test-py311:
+  extends: .test
+  image: python:3.11-bullseye
   script:
-  - tox -e py38-pycord20
-  - bash <(curl -s https://codecov.io/bash)
-
-test-py39-pycord17:
-  extends: .test-py39
-  script:
-  - tox -e py39-pycord17
-  - bash <(curl -s https://codecov.io/bash)
-
-test-py39-pycord20:
-  extends: .test-py39
-  script:
-  - tox -e py39-pycord20
-  - bash <(curl -s https://codecov.io/bash)
-
-test-py310-pycord17:
-  extends: .test-py310
-  script:
-  - tox -e py310-pycord17
-  - bash <(curl -s https://codecov.io/bash)
-
-test-py310-pycord20:
-  extends: .test-py310
-  script:
-  - tox -e py310-pycord20
+  - tox -e py311
   - bash <(curl -s https://codecov.io/bash)
 
 deploy-pypi:
   stage: deploy
-  image: python:3.8-bullseye
-
+  image: python:3.10-bullseye
   before_script:
-    - pip install twine
-
+    - pip install -U pip twine wheel build
   script:
-    - python setup.py sdist bdist_wheel
+    - python -m build
     - twine upload dist/*
-
   only:
     - tags

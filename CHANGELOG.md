@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Dropped support for Python 3.7
 - Migrated to PEP 621
 - Removed support for Pycord 1.x
+- Added support for Python 3.11
 
 ### Fixed
 
