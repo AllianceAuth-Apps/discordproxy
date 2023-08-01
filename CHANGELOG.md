@@ -11,7 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Moved tests folder pack into main package, so it's factory is available for other apps
+- Moved tests folder into main package, so it's factories are available for other apps
+- Added mandatory pylint checks
+- Refactored
 
 ## [1.3.0] - 2023-06-22
 
