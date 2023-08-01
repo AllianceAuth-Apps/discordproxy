@@ -1,11 +1,18 @@
+"""Custom exceptions for discordproxy."""
+
 from grpc import StatusCode as GrpcStatusCode
 
 from .helpers import parse_error_details
 
 
 def to_discord_proxy_exception(ex: Exception) -> "DiscordProxyException":
+    """Convert gRPC exception to a discordproxy exception.
+
+    Will remain unchanged if it is not a gRPC exception.
+    """
     if not hasattr(ex, "details"):
         return ex
+
     details = parse_error_details(ex)
     status = ex.code()
     if details.type == "HTTPException":

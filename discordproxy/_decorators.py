@@ -1,3 +1,5 @@
+"""Decorators for discordproxy."""
+
 import functools
 import json
 import logging
@@ -43,7 +45,7 @@ def handle_discord_exceptions(response_class):
                 context.set_code(codes_mapping.get(ex.status, grpc.StatusCode.UNKNOWN))
                 context.set_details(json.dumps(details))
                 return response_class()
-            except Exception as ex:
+            except Exception as ex:  # pylint: disable=broad-exception-caught
                 logger.warning(
                     "%s: Unexpected exception: %s:\n%s",
                     func.__name__,

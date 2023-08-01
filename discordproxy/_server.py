@@ -1,3 +1,5 @@
+"""Server loop for discord proxy."""
+
 import argparse
 import asyncio
 import functools

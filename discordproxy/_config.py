@@ -1,3 +1,5 @@
+"""Configure discordproxy server."""
+
 import argparse
 import logging
 import logging.config

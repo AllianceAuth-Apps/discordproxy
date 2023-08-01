@@ -1,3 +1,5 @@
+"""Client API for external apps using discordproxy."""
+
 from typing import Iterable
 
 import grpc
