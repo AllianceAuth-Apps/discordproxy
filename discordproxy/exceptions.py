@@ -12,8 +12,10 @@ def to_discord_proxy_exception(ex: Exception) -> "DiscordProxyException":
         return DiscordProxyHttpError(
             status=details.status, code=details.code, text=details.text
         )
-    elif status is GrpcStatusCode.DEADLINE_EXCEEDED:
+
+    if status is GrpcStatusCode.DEADLINE_EXCEEDED:
         return DiscordProxyTimeoutError(status=status, details=ex.details())
+
     return DiscordProxyGrpcError(status=status, details=ex.details())
 
 

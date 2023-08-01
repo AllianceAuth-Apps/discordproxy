@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - yyyy-mm-dd
 
+## [1.3.1] - 2023-08-01
+
+### Changed
+
+- Moved tests folder pack into main package, so it's factory is available for other apps
+
 ## [1.3.0] - 2023-06-22
 
 ### Added

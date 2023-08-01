@@ -10,10 +10,10 @@ from discordproxy import discord_api_pb2
 logger = logging.getLogger(__name__)
 
 
-def handle_discord_exceptions(Response):
+def handle_discord_exceptions(response_class):
     """converts discord HTTP exceptions into gRPC context"""
 
-    _CODES_MAPPING = {
+    codes_mapping = {
         400: grpc.StatusCode.INVALID_ARGUMENT,
         401: grpc.StatusCode.UNAUTHENTICATED,
         403: grpc.StatusCode.PERMISSION_DENIED,
@@ -40,9 +40,9 @@ def handle_discord_exceptions(Response):
                 details = _gen_grpc_error_details(
                     status=ex.status, code=ex.code, text=ex.text
                 )
-                context.set_code(_CODES_MAPPING.get(ex.status, grpc.StatusCode.UNKNOWN))
+                context.set_code(codes_mapping.get(ex.status, grpc.StatusCode.UNKNOWN))
                 context.set_details(json.dumps(details))
-                return Response()
+                return response_class()
             except Exception as ex:
                 logger.warning(
                     "%s: Unexpected exception: %s:\n%s",
@@ -50,7 +50,7 @@ def handle_discord_exceptions(Response):
                     ex,
                     request,
                 )
-                return Response()
+                return response_class()
 
         return decorated
 

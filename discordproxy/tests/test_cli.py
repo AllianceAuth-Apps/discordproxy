@@ -41,5 +41,6 @@ class TestCreateDirectMessage(NoSocketsTestCase):
         )
         mock_client.create_channel_message.side_effect = error
         # when
-        with self.assertRaises(SystemExit):
-            main()
+        main()
+        # then
+        self.assertTrue(mock_sys.exit.called)
