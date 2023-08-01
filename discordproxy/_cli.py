@@ -1,4 +1,5 @@
-"""Command line tool for sending messages to Discord server via gRPC."""
+"""Command line tools for sending messages to Discord server via gRPC."""
+
 import argparse
 import sys
 
@@ -9,6 +10,7 @@ from . import _constants
 
 
 def main():
+    """Main entry point for command line tools."""
     my_args = _parse_args(sys.argv[1:])
     target = f"{my_args.host}:{my_args.port}"
     client = DiscordClient(target=target)
@@ -25,7 +27,7 @@ def main():
             raise NotImplementedError(my_args.type)
     except DiscordProxyException as ex:
         print(f"ERROR: {ex}")
-        exit(1)
+        sys.exit(1)
     else:
         print("Message sent")
 

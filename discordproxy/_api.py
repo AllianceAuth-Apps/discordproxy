@@ -1,11 +1,14 @@
+"""Transform gRPC calls to Discord API calls."""
+
 import discord
 from google.protobuf import json_format
 
-from discordproxy import discord_api_pb2, discord_api_pb2_grpc
-from discordproxy._decorators import handle_discord_exceptions, log_request
+from . import discord_api_pb2, discord_api_pb2_grpc
+from ._decorators import handle_discord_exceptions, log_request
 
 
 def discord_to_grpc_embed(embed) -> discord_api_pb2.Embed:
+    """Convert a Discord embed to it's protobuf pendant."""
     embed_dict = embed.to_dict()
     return json_format.ParseDict(embed_dict, discord_api_pb2.Embed())
 
@@ -35,6 +38,7 @@ def discord_to_grpc_embed(embed) -> discord_api_pb2.Embed:
 
 
 def discord_to_grpc_message(message) -> discord_api_pb2.Message:
+    """Convert a Discord message to it's protobuf pendant."""
     try:
         avatar = message.author.avatar.key
     except AttributeError:
@@ -73,6 +77,7 @@ def discord_to_grpc_message(message) -> discord_api_pb2.Message:
 def discord_to_grpc_channel_type(
     channel_type: discord.ChannelType,
 ) -> discord_api_pb2.Channel.Type:
+    """Convert a Discord channel type to it's protobuf pendant."""
     type_map = {
         discord.ChannelType.text: discord_api_pb2.Channel.Type.GUILD_TEXT,
         discord.ChannelType.private: discord_api_pb2.Channel.Type.DM,
@@ -89,6 +94,7 @@ def discord_to_grpc_channel_type(
 def discord_to_grpc_channel(
     channel: discord.abc.GuildChannel,
 ) -> discord_api_pb2.Channel:
+    """Convert a Discord channel to it's protobuf pendant."""
     try:
         guild_id = channel.guild.id
     except AttributeError:
@@ -116,7 +122,10 @@ def discord_to_grpc_channel(
     )
 
 
+# pylint: disable = invalid-overridden-method
 class DiscordApi(discord_api_pb2_grpc.DiscordApiServicer):
+    """Implementation of the discordproxy API."""
+
     def __init__(self, discord_client) -> None:
         super().__init__()
         self.discord_client = discord_client

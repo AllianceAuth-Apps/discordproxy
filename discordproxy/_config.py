@@ -1,7 +1,10 @@
+"""Configure discordproxy server."""
+
 import argparse
 import logging
 import logging.config
 import os
+import sys
 from pathlib import Path
 from typing import Tuple
 
@@ -18,7 +21,7 @@ def setup_server(args_list: list) -> Tuple[str, argparse.Namespace]:
     )
     if not token:
         print("ERROR: No Discord bot token provided")
-        exit(1)
+        sys.exit(1)
     logging.config.dictConfig(_logging_config(my_args))
     return token, my_args
 

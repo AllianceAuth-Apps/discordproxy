@@ -1,4 +1,5 @@
-"""Helpers for gRPC clients"""
+"""Helpers for client apps."""
+
 import json
 from collections import namedtuple
 
@@ -8,7 +9,7 @@ GrpcErrorDetails = namedtuple("GrpcErrorDetails", ["type", "status", "code", "te
 
 
 def parse_error_details(grpc_error: grpc.RpcError) -> GrpcErrorDetails:
-    """Helper for parsing the details of a gRPC error exception into a nammed tuple.
+    """Helper for parsing the details of a gRPC error exception into a named tuple.
     Recognizes a Discord error encoded as JSON
     """
     details = grpc_error.details()

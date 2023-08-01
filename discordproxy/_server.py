@@ -1,3 +1,5 @@
+"""Server loop for discord proxy."""
+
 import argparse
 import asyncio
 import functools
@@ -49,10 +51,10 @@ def _setup_handlers(grpc_server: grpc.aio.server, discord_client: DiscordClient)
     """Setup signal and exception handlers for the event loop."""
     loop = asyncio.get_running_loop()
     signals = (signal.SIGHUP, signal.SIGTERM, signal.SIGINT)
-    for s in signals:
+    for my_signal in signals:
         loop.add_signal_handler(
-            s,
-            lambda s=s: asyncio.create_task(
+            my_signal,
+            lambda s=my_signal: asyncio.create_task(
                 _shutdown_server(grpc_server, discord_client, s)
             ),
         )

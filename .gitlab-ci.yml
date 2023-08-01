@@ -3,7 +3,7 @@ stages:
 - test
 - deploy
 
-pre-commit-check:
+pre-commit:
   stage: checks
   image: python:3.10-bullseye
   variables:
@@ -15,41 +15,46 @@ pre-commit-check:
     - pip install pre-commit
     - pre-commit run --all-files
 
-.test:
-  stage: test
+.tox_setup:
   before_script:
-    - python -V
     - pip install tox
 
+pylint:
+  stage: checks
+  extends: .tox_setup
+  image: python:3.10-bullseye
+  script:
+    - tox -e pylint
+
 test-docs:
-  extends: .test
+  extends: .tox_setup
   image: python:3.10-bullseye
   script:
   - tox -e docs
 
 test-py38:
-  extends: .test
+  extends: .tox_setup
   image: python:3.8-bullseye
   script:
   - tox -e py38
   - bash <(curl -s https://codecov.io/bash)
 
 test-py39:
-  extends: .test
+  extends: .tox_setup
   image: python:3.9-bullseye
   script:
   - tox -e py39
   - bash <(curl -s https://codecov.io/bash)
 
 test-py310:
-  extends: .test
+  extends: .tox_setup
   image: python:3.10-bullseye
   script:
   - tox -e py310
   - bash <(curl -s https://codecov.io/bash)
 
 test-py311:
-  extends: .test
+  extends: .tox_setup
   image: python:3.11-bullseye
   script:
   - tox -e py311
