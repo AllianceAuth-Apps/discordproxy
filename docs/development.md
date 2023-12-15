@@ -9,7 +9,7 @@ There are two different approaches on how to interact with Discord via Discord P
 
 `DiscordClient` is a class provided by Discord Proxy which aims to make it easy to interact with Discord in your code. Most of the complexity of the underlying gRPC protocol is hidden behind a simple API.
 
-```eval_rst
+```{eval-rst}
 .. seealso::
     For the documentation of the DiscordClient class see: :ref:`package:Client`
 ```
@@ -25,7 +25,7 @@ client = DiscordClient()
 client.create_direct_message(user_id=123456789, content="Hello, world!")
 ```
 
-```eval_rst
+```{eval-rst}
 .. hint::
     To test this script please replace the user ID with your own. Here is how you can find IDs on your Discord server: `Where can I find my User/Server/Message ID? <https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID->`_
 ```
@@ -43,7 +43,7 @@ embed = Embed(description="Hello, world!")
 client.create_direct_message(user_id=123456789, embed=embed)
 ```
 
-```eval_rst
+```{eval-rst}
 .. seealso::
     All common Discord objects are defined as Protobuf classes and can be found here: :doc:`protobufs`. These classes are used for creating objects for to methods of the `DiscordClient` and are returned by them.
 ```
@@ -120,7 +120,7 @@ If a gRPC request fails a `grpc.RpcError` exception will be raised. RPC errors r
 - `code`: the [gRPC status code](https://grpc.github.io/grpc/core/md_doc_statuscodes.html)
 - `details`: a string with additional details about the error.
 
-The most common errors you can except will be originating from calls to the Discord API. e.g. if a user is no longer a member of the guild the Discord API will return a http response code 404. Discord Proxy will map all HTTP response codes from Discord to a gRPC status codes and raise a gRPC error exceptions (see also [gRPC status codes](#gRPC-status-codes)). In addition the details field of that exception will contain the full error information as JSON object (see also [gRPC details](#gRPC-details)).
+The most common errors you can except will be originating from calls to the Discord API. e.g. if a user is no longer a member of the guild the Discord API will return a http response code 404. Discord Proxy will map all HTTP response codes from Discord to a gRPC status codes and raise a gRPC error exceptions (see also [gRPC status codes](#grpc-status-codes)). In addition the details field of that exception will contain the full error information as JSON object (see also [gRPC details](#grpc-details)).
 
 #### Code Example
 
@@ -151,7 +151,7 @@ HTTP response code | gRPC status code
 504 (GATEWAY TIMEOUT) | `DEADLINE_EXCEEDED`
 5xx (SERVER ERROR) | `INTERNAL`
 
-```eval_rst
+```{eval-rst}
 .. seealso::
     `Status codes and their use in gRPC <https://grpc.github.io/grpc/core/md_doc_statuscodes.html>`_.
 ```
@@ -180,7 +180,7 @@ Legend:
 - `code`: JSON error code
 - `text`: Error message
 
-```eval_rst
+```{eval-rst}
 .. note::
     For most cases it should be sufficient to deal with the status code. The JSON error code is only needed in some special cases.
 ```
@@ -199,7 +199,7 @@ except grpc.RpcError as e:
     print(f"Discord error message: {details.text}")
 ```
 
-```eval_rst
+```{eval-rst}
 .. seealso::
     For the documentation of all helpers see: :ref:`package:Helpers`
 ```
