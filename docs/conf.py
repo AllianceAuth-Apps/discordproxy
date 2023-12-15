@@ -13,7 +13,7 @@
 import os
 import sys
 
-from recommonmark.transform import AutoStructify
+import discordproxy
 
 sys.path.insert(0, os.path.split(os.path.dirname(os.path.abspath(__file__)))[0])
 
@@ -31,10 +31,9 @@ author = "Erik Kalkoken"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "recommonmark",
-    "sphinx_markdown_tables",
+    "myst_parser",
+    # "sphinx_copybutton",
     "sphinx.ext.autodoc",
-    "sphinx_rtd_theme",
     "sphinx.ext.napoleon",
     "sphinx.ext.autosectionlabel",
 ]
@@ -54,30 +53,32 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # a list of builtin themes.
 #
 # html_theme = "alabaster"
-html_theme = "sphinx_rtd_theme"
+html_theme = "alabaster"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
-html_css_files = ["css/rtd_dark.css"]
+html_css_files = ["css/custom.css"]
+
+html_theme_options = {
+    "description": discordproxy.__doc__,
+    "fixed_sidebar": True,
+    "badge_branch": "master",
+    "show_powered_by": False,
+    "sidebar_collapse": True,
+    "extra_nav_links": {
+        "Report Issues": "https://gitlab.com/ErikKalkoken/discordproxy/-/issues",
+    },
+}
 
 # -- autodoc --
 autoclass_content = "both"
+add_module_names = False
 
 # -- Auto sections --
 autosectionlabel_prefix_document = True
 
-
-# -- AutoStructify --
-
-
-def setup(app):
-    app.add_config_value(
-        "recommonmark_config",
-        {
-            "auto_toc_tree_section": "Contents",
-        },
-        True,
-    )
-    app.add_transform(AutoStructify)
+# myst
+myst_heading_anchors = 5
+myst_all_links_external = True

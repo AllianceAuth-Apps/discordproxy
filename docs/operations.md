@@ -8,7 +8,7 @@ This section describes how to install Discord Proxy into an existing Alliance Au
 
 #### Install Discord Proxy
 
-```eval_rst
+```{eval-rst}
 .. note::
     This guide assumed a default installation according to the official Auth installation guide.
 ```
@@ -42,7 +42,7 @@ stdout_logfile=/home/allianceserver/myauth/log/discordproxyserver.out
 stderr_logfile=/home/allianceserver/myauth/log/discordproxyserver.err
 ```
 
-```eval_rst
+```{eval-rst}
 .. note::
     We do not recommend adding discordproxy to your myauth group, since it does not require to be restarted after myauth configuration changes like the other programs in that group.
 ```
@@ -138,7 +138,7 @@ To verify your Discord Proxy server is up and running send a direct message to y
 discordproxymessage direct 12345678 "test"
 ```
 
-```eval_rst
+```{eval-rst}
 .. hint::
     Here is how you can find IDs on your Discord server: `Where can I find my User/Server/Message ID? <https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID->`_
 ```
