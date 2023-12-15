@@ -13,7 +13,7 @@
 import os
 import sys
 
-from recommonmark.transform import AutoStructify
+import sphinx_rtd_theme  # noqa
 
 sys.path.insert(0, os.path.split(os.path.dirname(os.path.abspath(__file__)))[0])
 
@@ -31,8 +31,8 @@ author = "Erik Kalkoken"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "recommonmark",
-    "sphinx_markdown_tables",
+    "myst_parser",
+    "sphinx_copybutton",
     "sphinx.ext.autodoc",
     "sphinx_rtd_theme",
     "sphinx.ext.napoleon",
@@ -64,20 +64,11 @@ html_css_files = ["css/rtd_dark.css"]
 
 # -- autodoc --
 autoclass_content = "both"
+add_module_names = False
 
 # -- Auto sections --
 autosectionlabel_prefix_document = True
 
-
-# -- AutoStructify --
-
-
-def setup(app):
-    app.add_config_value(
-        "recommonmark_config",
-        {
-            "auto_toc_tree_section": "Contents",
-        },
-        True,
-    )
-    app.add_transform(AutoStructify)
+# myst
+myst_heading_anchors = 5
+suppress_warnings = ["myst.xref_missing"]
