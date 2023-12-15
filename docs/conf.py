@@ -13,7 +13,7 @@
 import os
 import sys
 
-import sphinx_rtd_theme  # noqa
+import discordproxy
 
 sys.path.insert(0, os.path.split(os.path.dirname(os.path.abspath(__file__)))[0])
 
@@ -32,9 +32,8 @@ author = "Erik Kalkoken"
 # ones.
 extensions = [
     "myst_parser",
-    "sphinx_copybutton",
+    # "sphinx_copybutton",
     "sphinx.ext.autodoc",
-    "sphinx_rtd_theme",
     "sphinx.ext.napoleon",
     "sphinx.ext.autosectionlabel",
 ]
@@ -54,13 +53,24 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # a list of builtin themes.
 #
 # html_theme = "alabaster"
-html_theme = "sphinx_rtd_theme"
+html_theme = "alabaster"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
-html_css_files = ["css/rtd_dark.css"]
+html_css_files = ["css/custom.css"]
+
+html_theme_options = {
+    "description": discordproxy.__doc__,
+    "fixed_sidebar": True,
+    "badge_branch": "master",
+    "show_powered_by": False,
+    "sidebar_collapse": True,
+    "extra_nav_links": {
+        "Report Issues": "https://gitlab.com/ErikKalkoken/discordproxy/-/issues",
+    },
+}
 
 # -- autodoc --
 autoclass_content = "both"
@@ -71,4 +81,4 @@ autosectionlabel_prefix_document = True
 
 # myst
 myst_heading_anchors = 5
-suppress_warnings = ["myst.xref_missing"]
+myst_all_links_external = True
