@@ -6,8 +6,6 @@
 
 This section describes how to install Discord Proxy into an existing Alliance Auth installation.
 
-#### Install Discord Proxy
-
 ```{eval-rst}
 .. note::
     This guide assumed a default installation according to the official Auth installation guide.
