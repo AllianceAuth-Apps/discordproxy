@@ -10,6 +10,24 @@ from .helpers import NoSocketsTestCase
 MODULE_PATH = "discordproxy.client"
 
 
+class TestDiscordClient(NoSocketsTestCase):
+    def test_should_return_new_config(self):
+        # when
+        c = DiscordClient(target="1.2.3.4:56789", options={"alpha": "one"}, timeout=42)
+        # then
+        self.assertEqual(c.target, "1.2.3.4:56789")
+        self.assertEqual(c.options, {"alpha": "one"})
+        self.assertEqual(c.timeout, 42)
+
+    def test_should_return_default(self):
+        # when
+        c = DiscordClient()
+        # then
+        self.assertEqual(c.target, "localhost:50051")
+        self.assertIsNone(c.options)
+        self.assertIsNone(c.timeout)
+
+
 @patch(MODULE_PATH + ".DiscordApiStub")
 @patch(MODULE_PATH + ".grpc.insecure_channel", spec=True)
 class TestFetchChannels(NoSocketsTestCase):
