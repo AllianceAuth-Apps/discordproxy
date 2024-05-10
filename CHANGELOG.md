@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Added read-only properties to DiscordClient to enable testing of the current configuration
+- Added AA4 docker config to documentation
 
 ## [1.3.1] - 2023-08-01
 

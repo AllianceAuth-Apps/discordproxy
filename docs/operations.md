@@ -6,6 +6,8 @@
 
 This section describes how to install Discord Proxy into an existing Alliance Auth installation.
 
+#### Bare metal
+
 ```{eval-rst}
 .. note::
     This guide assumed a default installation according to the official Auth installation guide.
@@ -60,6 +62,28 @@ supervisorctl status discordproxy
 It should say "RUNNING".
 
 To verify your installation was successful we recommend to [test your server](#test-discord-proxy-server).
+
+#### Docker AA4
+
+```{eval-rst}
+.. note::
+    This section is a draft. We welcome any feedback on how to complete it.
+```
+
+The new way of running discordproxy in AA 4.x is with a small container build via macros:
+
+```text
+allianceauth_discordproxy:
+container_name: allianceauth_discordproxy
+<<: [*allianceauth-base]
+entrypoint: [
+    "/home/allianceauth/.local/bin/discordproxyserver",
+    "--host",
+    "0.0.0.0",
+    "--token",
+    "${DISCORD_BOT_TOKEN}"
+]
+```
 
 ### Stand-alone installation
 
