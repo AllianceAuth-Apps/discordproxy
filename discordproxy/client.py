@@ -37,6 +37,21 @@ class DiscordClient:
         self._options = options
         self._timeout = timeout
 
+    @property
+    def target(self) -> str:
+        """Return configured target for this client."""
+        return self._target
+
+    @property
+    def timeout(self) -> str:
+        """Return configured timeout for this client."""
+        return self._timeout
+
+    @property
+    def options(self) -> str:
+        """Return configured options for this client."""
+        return self._options
+
     def get_guild_channels(self, guild_id: int) -> Iterable[Channel]:
         """Get all channels.
 

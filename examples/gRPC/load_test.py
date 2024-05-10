@@ -1,4 +1,5 @@
 """This is an example for an async client. It sends 50 direct messages concurrently."""
+
 import asyncio
 import logging
 

@@ -56,9 +56,11 @@ def discord_to_grpc_message(message) -> discord_api_pb2.Message:
             user=author,
             nick=message.author.nick,
             roles=[obj.id for obj in message.author.roles],
-            joined_at=message.author.joined_at.isoformat()
-            if message.author.joined_at
-            else None,
+            joined_at=(
+                message.author.joined_at.isoformat()
+                if message.author.joined_at
+                else None
+            ),
             # permissions=message.author.permissions.value, TODO
         )
     else:

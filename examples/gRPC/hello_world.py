@@ -1,4 +1,5 @@
 """Client example for sending 'hello world' as direct message"""
+
 import grpc
 
 from discordproxy.discord_api_pb2 import SendDirectMessageRequest

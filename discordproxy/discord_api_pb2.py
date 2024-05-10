@@ -61,7 +61,7 @@ Channel = _reflection.GeneratedProtocolMessageType(
     (_message.Message,),
     {
         "DESCRIPTOR": _CHANNEL,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.Channel)
     },
 )
@@ -76,7 +76,7 @@ Embed = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _EMBED_FOOTER,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Embed.Footer)
             },
         ),
@@ -85,7 +85,7 @@ Embed = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _EMBED_IMAGE,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Embed.Image)
             },
         ),
@@ -94,7 +94,7 @@ Embed = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _EMBED_THUMBNAIL,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Embed.Thumbnail)
             },
         ),
@@ -103,7 +103,7 @@ Embed = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _EMBED_VIDEO,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Embed.Video)
             },
         ),
@@ -112,7 +112,7 @@ Embed = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _EMBED_PROVIDER,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Embed.Provider)
             },
         ),
@@ -121,7 +121,7 @@ Embed = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _EMBED_AUTHOR,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Embed.Author)
             },
         ),
@@ -130,12 +130,12 @@ Embed = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _EMBED_FIELD,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Embed.Field)
             },
         ),
         "DESCRIPTOR": _EMBED,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.Embed)
     },
 )
@@ -153,7 +153,7 @@ Emoji = _reflection.GeneratedProtocolMessageType(
     (_message.Message,),
     {
         "DESCRIPTOR": _EMOJI,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.Emoji)
     },
 )
@@ -164,7 +164,7 @@ GuildMember = _reflection.GeneratedProtocolMessageType(
     (_message.Message,),
     {
         "DESCRIPTOR": _GUILDMEMBER,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.GuildMember)
     },
 )
@@ -179,7 +179,7 @@ Message = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _MESSAGE_CHANNELMENTION,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Message.ChannelMention)
             },
         ),
@@ -188,7 +188,7 @@ Message = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _MESSAGE_ATTACHMENT,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Message.Attachment)
             },
         ),
@@ -197,7 +197,7 @@ Message = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _MESSAGE_REACTION,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Message.Reaction)
             },
         ),
@@ -206,7 +206,7 @@ Message = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _MESSAGE_ACTIVITY,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Message.Activity)
             },
         ),
@@ -215,7 +215,7 @@ Message = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _MESSAGE_APPLICATION,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Message.Application)
             },
         ),
@@ -224,7 +224,7 @@ Message = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _MESSAGE_REFERENCE,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Message.Reference)
             },
         ),
@@ -233,12 +233,12 @@ Message = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _MESSAGE_STICKER,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Message.Sticker)
             },
         ),
         "DESCRIPTOR": _MESSAGE,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.Message)
     },
 )
@@ -260,12 +260,12 @@ Role = _reflection.GeneratedProtocolMessageType(
             (_message.Message,),
             {
                 "DESCRIPTOR": _ROLE_TAG,
-                "__module__": "discord_api_pb2"
+                "__module__": "discord_api_pb2",
                 # @@protoc_insertion_point(class_scope:discord_api.Role.Tag)
             },
         ),
         "DESCRIPTOR": _ROLE,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.Role)
     },
 )
@@ -277,7 +277,7 @@ User = _reflection.GeneratedProtocolMessageType(
     (_message.Message,),
     {
         "DESCRIPTOR": _USER,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.User)
     },
 )
@@ -288,7 +288,7 @@ SendChannelMessageRequest = _reflection.GeneratedProtocolMessageType(
     (_message.Message,),
     {
         "DESCRIPTOR": _SENDCHANNELMESSAGEREQUEST,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.SendChannelMessageRequest)
     },
 )
@@ -299,7 +299,7 @@ SendChannelMessageResponse = _reflection.GeneratedProtocolMessageType(
     (_message.Message,),
     {
         "DESCRIPTOR": _SENDCHANNELMESSAGERESPONSE,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.SendChannelMessageResponse)
     },
 )
@@ -310,7 +310,7 @@ SendDirectMessageRequest = _reflection.GeneratedProtocolMessageType(
     (_message.Message,),
     {
         "DESCRIPTOR": _SENDDIRECTMESSAGEREQUEST,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.SendDirectMessageRequest)
     },
 )
@@ -321,7 +321,7 @@ SendDirectMessageResponse = _reflection.GeneratedProtocolMessageType(
     (_message.Message,),
     {
         "DESCRIPTOR": _SENDDIRECTMESSAGERESPONSE,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.SendDirectMessageResponse)
     },
 )
@@ -332,7 +332,7 @@ GetGuildChannelsRequest = _reflection.GeneratedProtocolMessageType(
     (_message.Message,),
     {
         "DESCRIPTOR": _GETGUILDCHANNELSREQUEST,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.GetGuildChannelsRequest)
     },
 )
@@ -343,7 +343,7 @@ GetGuildChannelsResponse = _reflection.GeneratedProtocolMessageType(
     (_message.Message,),
     {
         "DESCRIPTOR": _GETGUILDCHANNELSRESPONSE,
-        "__module__": "discord_api_pb2"
+        "__module__": "discord_api_pb2",
         # @@protoc_insertion_point(class_scope:discord_api.GetGuildChannelsResponse)
     },
 )
