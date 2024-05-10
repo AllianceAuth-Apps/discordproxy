@@ -1,4 +1,5 @@
 """Client example for sending 'hello world' as direct message"""
+
 from discordproxy.client import DiscordClient
 
 client = DiscordClient()
