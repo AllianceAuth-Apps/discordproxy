@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - yyyy-mm-dd
 
+## [1.3.2] - 2024-05-10
+
+### Changed
+
+- Added read-only properties to DiscordClient to enable testing of the current configuration
+
 ## [1.3.1] - 2023-08-01
 
 ### Changed
