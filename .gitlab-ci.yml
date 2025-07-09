@@ -1,72 +1,72 @@
 stages:
-- checks
-- test
-- deploy
+    - checks
+    - test
+    - deploy
 
 pre-commit:
-  stage: checks
-  image: python:3.10-bullseye
-  variables:
-    PRE_COMMIT_HOME: ${CI_PROJECT_DIR}/.cache/pre-commit
-  cache:
-    paths:
-      - ${PRE_COMMIT_HOME}
-  script:
-    - pip install pre-commit
-    - pre-commit run --all-files
+    stage: checks
+    image: python:3.11-bullseye
+    variables:
+        PRE_COMMIT_HOME: ${CI_PROJECT_DIR}/.cache/pre-commit
+    cache:
+        paths:
+            - ${PRE_COMMIT_HOME}
+    script:
+        - pip install pre-commit
+        - pre-commit run --all-files
 
 .tox_setup:
-  before_script:
-    - pip install tox
+    before_script:
+        - pip install tox
 
 pylint:
-  stage: checks
-  extends: .tox_setup
-  image: python:3.10-bullseye
-  script:
-    - tox -e pylint
+    stage: checks
+    extends: .tox_setup
+    image: python:3.10-bullseye
+    script:
+        - tox -e pylint
 
 test-docs:
-  extends: .tox_setup
-  image: python:3.10-bullseye
-  script:
-  - tox -e docs
-
-test-py38:
-  extends: .tox_setup
-  image: python:3.8-bullseye
-  script:
-  - tox -e py38
-  - bash <(curl -s https://codecov.io/bash)
+    extends: .tox_setup
+    image: python:3.10-bullseye
+    script:
+        - tox -e docs
 
 test-py39:
-  extends: .tox_setup
-  image: python:3.9-bullseye
-  script:
-  - tox -e py39
-  - bash <(curl -s https://codecov.io/bash)
+    extends: .tox_setup
+    image: python:3.9-bullseye
+    script:
+        - tox -e py39
+        - bash <(curl -s https://codecov.io/bash)
 
 test-py310:
-  extends: .tox_setup
-  image: python:3.10-bullseye
-  script:
-  - tox -e py310
-  - bash <(curl -s https://codecov.io/bash)
+    extends: .tox_setup
+    image: python:3.10-bullseye
+    script:
+        - tox -e py310
+        - bash <(curl -s https://codecov.io/bash)
 
 test-py311:
-  extends: .tox_setup
-  image: python:3.11-bullseye
-  script:
-  - tox -e py311
-  - bash <(curl -s https://codecov.io/bash)
+    extends: .tox_setup
+    image: python:3.11-bullseye
+    script:
+        - tox -e py311
+        - bash <(curl -s https://codecov.io/bash)
+
+test-py312:
+    extends: .tox_setup
+    image: python:3.12-bullseye
+    script:
+        - tox -e py312
+        - bash <(curl -s https://codecov.io/bash)
 
 deploy-pypi:
-  stage: deploy
-  image: python:3.10-bullseye
-  before_script:
-    - pip install -U pip twine wheel build
-  script:
-    - python -m build
-    - twine upload dist/*
-  only:
-    - tags
+    stage: deploy
+    image: python:3.11-bullseye
+    before_script:
+        - pip install -U pip twine wheel build
+    script:
+        - python -m build
+        - twine upload dist/*
+    only:
+        - tags
