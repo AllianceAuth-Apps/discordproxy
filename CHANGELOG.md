@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - yyyy-mm-dd
 
+## [1.3.3] - 2025-07-09
+
+### Changed
+
+- Updated to protobuf 6
+
 ## [1.3.2] - 2024-05-10
 
 ### Changed

@@ -1,5 +1,7 @@
 """Client API for external apps using discordproxy."""
 
+# pylint: disable=no-name-in-module
+
 from typing import Iterable
 
 import grpc
