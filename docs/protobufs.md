@@ -3,48 +3,48 @@
 
 ## Table of Contents
 
-- [discord_api.proto](#discord_api.proto)
-    - [Channel](#discord_api.Channel)
-    - [Embed](#discord_api.Embed)
-    - [Embed.Author](#discord_api.Embed.Author)
-    - [Embed.Field](#discord_api.Embed.Field)
-    - [Embed.Footer](#discord_api.Embed.Footer)
-    - [Embed.Image](#discord_api.Embed.Image)
-    - [Embed.Provider](#discord_api.Embed.Provider)
-    - [Embed.Thumbnail](#discord_api.Embed.Thumbnail)
-    - [Embed.Video](#discord_api.Embed.Video)
-    - [Emoji](#discord_api.Emoji)
-    - [GetGuildChannelsRequest](#discord_api.GetGuildChannelsRequest)
-    - [GetGuildChannelsResponse](#discord_api.GetGuildChannelsResponse)
-    - [GuildMember](#discord_api.GuildMember)
-    - [Message](#discord_api.Message)
-    - [Message.Activity](#discord_api.Message.Activity)
-    - [Message.Application](#discord_api.Message.Application)
-    - [Message.Attachment](#discord_api.Message.Attachment)
-    - [Message.ChannelMention](#discord_api.Message.ChannelMention)
-    - [Message.Reaction](#discord_api.Message.Reaction)
-    - [Message.Reference](#discord_api.Message.Reference)
-    - [Message.Sticker](#discord_api.Message.Sticker)
-    - [Role](#discord_api.Role)
-    - [Role.Tag](#discord_api.Role.Tag)
-    - [SendChannelMessageRequest](#discord_api.SendChannelMessageRequest)
-    - [SendChannelMessageResponse](#discord_api.SendChannelMessageResponse)
-    - [SendDirectMessageRequest](#discord_api.SendDirectMessageRequest)
-    - [SendDirectMessageResponse](#discord_api.SendDirectMessageResponse)
-    - [User](#discord_api.User)
+- [discord_api.proto](#discord_api-proto)
+    - [Channel](#discord_api-Channel)
+    - [Embed](#discord_api-Embed)
+    - [Embed.Author](#discord_api-Embed-Author)
+    - [Embed.Field](#discord_api-Embed-Field)
+    - [Embed.Footer](#discord_api-Embed-Footer)
+    - [Embed.Image](#discord_api-Embed-Image)
+    - [Embed.Provider](#discord_api-Embed-Provider)
+    - [Embed.Thumbnail](#discord_api-Embed-Thumbnail)
+    - [Embed.Video](#discord_api-Embed-Video)
+    - [Emoji](#discord_api-Emoji)
+    - [GetGuildChannelsRequest](#discord_api-GetGuildChannelsRequest)
+    - [GetGuildChannelsResponse](#discord_api-GetGuildChannelsResponse)
+    - [GuildMember](#discord_api-GuildMember)
+    - [Message](#discord_api-Message)
+    - [Message.Activity](#discord_api-Message-Activity)
+    - [Message.Application](#discord_api-Message-Application)
+    - [Message.Attachment](#discord_api-Message-Attachment)
+    - [Message.ChannelMention](#discord_api-Message-ChannelMention)
+    - [Message.Reaction](#discord_api-Message-Reaction)
+    - [Message.Reference](#discord_api-Message-Reference)
+    - [Message.Sticker](#discord_api-Message-Sticker)
+    - [Role](#discord_api-Role)
+    - [Role.Tag](#discord_api-Role-Tag)
+    - [SendChannelMessageRequest](#discord_api-SendChannelMessageRequest)
+    - [SendChannelMessageResponse](#discord_api-SendChannelMessageResponse)
+    - [SendDirectMessageRequest](#discord_api-SendDirectMessageRequest)
+    - [SendDirectMessageResponse](#discord_api-SendDirectMessageResponse)
+    - [User](#discord_api-User)
 
-    - [Channel.Type](#discord_api.Channel.Type)
-    - [Message.Activity.Type](#discord_api.Message.Activity.Type)
-    - [Message.Sticker.Type](#discord_api.Message.Sticker.Type)
-    - [Message.Type](#discord_api.Message.Type)
+    - [Channel.Type](#discord_api-Channel-Type)
+    - [Message.Activity.Type](#discord_api-Message-Activity-Type)
+    - [Message.Sticker.Type](#discord_api-Message-Sticker-Type)
+    - [Message.Type](#discord_api-Message-Type)
 
-    - [DiscordApi](#discord_api.DiscordApi)
+    - [DiscordApi](#discord_api-DiscordApi)
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="discord_api.proto"></a>
+<a name="discord_api-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## discord_api.proto
@@ -53,7 +53,7 @@ Discord API service
 This file contains all messages and services currently supported by Discord Proxy
 
 
-<a name="discord_api.Channel"></a>
+<a name="discord_api-Channel"></a>
 
 ### Channel
 Source: https://discord.com/developers/docs/resources/channel#channel-object
@@ -62,7 +62,7 @@ Source: https://discord.com/developers/docs/resources/channel#channel-object
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [uint64](#uint64) |  |  |
-| type | [Channel.Type](#discord_api.Channel.Type) |  |  |
+| type | [Channel.Type](#discord_api-Channel-Type) |  |  |
 | guild_id | [uint64](#uint64) |  |  |
 | position | [int32](#int32) |  |  |
 | name | [string](#string) |  | tbd // |
@@ -76,7 +76,7 @@ Source: https://discord.com/developers/docs/resources/channel#channel-object
 
 
 
-<a name="discord_api.Embed"></a>
+<a name="discord_api-Embed"></a>
 
 ### Embed
 Source: https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
@@ -90,20 +90,20 @@ Source: https://discord.com/developers/docs/resources/channel#embed-object-embed
 | url | [string](#string) |  |  |
 | timestamp | [string](#string) |  |  |
 | color | [int32](#int32) |  |  |
-| footer | [Embed.Footer](#discord_api.Embed.Footer) |  |  |
-| image | [Embed.Image](#discord_api.Embed.Image) |  |  |
-| thumbnail | [Embed.Thumbnail](#discord_api.Embed.Thumbnail) |  |  |
-| video | [Embed.Video](#discord_api.Embed.Video) |  |  |
-| provider | [Embed.Provider](#discord_api.Embed.Provider) |  |  |
-| author | [Embed.Author](#discord_api.Embed.Author) |  |  |
-| fields | [Embed.Field](#discord_api.Embed.Field) | repeated |  |
+| footer | [Embed.Footer](#discord_api-Embed-Footer) |  |  |
+| image | [Embed.Image](#discord_api-Embed-Image) |  |  |
+| thumbnail | [Embed.Thumbnail](#discord_api-Embed-Thumbnail) |  |  |
+| video | [Embed.Video](#discord_api-Embed-Video) |  |  |
+| provider | [Embed.Provider](#discord_api-Embed-Provider) |  |  |
+| author | [Embed.Author](#discord_api-Embed-Author) |  |  |
+| fields | [Embed.Field](#discord_api-Embed-Field) | repeated |  |
 
 
 
 
 
 
-<a name="discord_api.Embed.Author"></a>
+<a name="discord_api-Embed-Author"></a>
 
 ### Embed.Author
 
@@ -121,7 +121,7 @@ Source: https://discord.com/developers/docs/resources/channel#embed-object-embed
 
 
 
-<a name="discord_api.Embed.Field"></a>
+<a name="discord_api-Embed-Field"></a>
 
 ### Embed.Field
 
@@ -138,7 +138,7 @@ Source: https://discord.com/developers/docs/resources/channel#embed-object-embed
 
 
 
-<a name="discord_api.Embed.Footer"></a>
+<a name="discord_api-Embed-Footer"></a>
 
 ### Embed.Footer
 
@@ -155,7 +155,7 @@ Source: https://discord.com/developers/docs/resources/channel#embed-object-embed
 
 
 
-<a name="discord_api.Embed.Image"></a>
+<a name="discord_api-Embed-Image"></a>
 
 ### Embed.Image
 
@@ -173,7 +173,7 @@ Source: https://discord.com/developers/docs/resources/channel#embed-object-embed
 
 
 
-<a name="discord_api.Embed.Provider"></a>
+<a name="discord_api-Embed-Provider"></a>
 
 ### Embed.Provider
 
@@ -189,7 +189,7 @@ Source: https://discord.com/developers/docs/resources/channel#embed-object-embed
 
 
 
-<a name="discord_api.Embed.Thumbnail"></a>
+<a name="discord_api-Embed-Thumbnail"></a>
 
 ### Embed.Thumbnail
 
@@ -207,7 +207,7 @@ Source: https://discord.com/developers/docs/resources/channel#embed-object-embed
 
 
 
-<a name="discord_api.Embed.Video"></a>
+<a name="discord_api-Embed-Video"></a>
 
 ### Embed.Video
 
@@ -225,7 +225,7 @@ Source: https://discord.com/developers/docs/resources/channel#embed-object-embed
 
 
 
-<a name="discord_api.Emoji"></a>
+<a name="discord_api-Emoji"></a>
 
 ### Emoji
 Source: https://discord.com/developers/docs/resources/emoji#emoji-object
@@ -236,7 +236,7 @@ Source: https://discord.com/developers/docs/resources/emoji#emoji-object
 | id | [uint64](#uint64) |  |  |
 | name | [string](#string) |  |  |
 | roles | [uint64](#uint64) | repeated |  |
-| user | [User](#discord_api.User) |  |  |
+| user | [User](#discord_api-User) |  |  |
 | required_colons | [bool](#bool) |  |  |
 | managed | [bool](#bool) |  |  |
 | animated | [bool](#bool) |  |  |
@@ -247,7 +247,7 @@ Source: https://discord.com/developers/docs/resources/emoji#emoji-object
 
 
 
-<a name="discord_api.GetGuildChannelsRequest"></a>
+<a name="discord_api-GetGuildChannelsRequest"></a>
 
 ### GetGuildChannelsRequest
 
@@ -262,7 +262,7 @@ Source: https://discord.com/developers/docs/resources/emoji#emoji-object
 
 
 
-<a name="discord_api.GetGuildChannelsResponse"></a>
+<a name="discord_api-GetGuildChannelsResponse"></a>
 
 ### GetGuildChannelsResponse
 
@@ -270,14 +270,14 @@ Source: https://discord.com/developers/docs/resources/emoji#emoji-object
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| channels | [Channel](#discord_api.Channel) | repeated |  |
+| channels | [Channel](#discord_api-Channel) | repeated |  |
 
 
 
 
 
 
-<a name="discord_api.GuildMember"></a>
+<a name="discord_api-GuildMember"></a>
 
 ### GuildMember
 Source: https://discord.com/developers/docs/resources/guild#guild-member-object
@@ -285,7 +285,7 @@ Source: https://discord.com/developers/docs/resources/guild#guild-member-object
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| user | [User](#discord_api.User) |  |  |
+| user | [User](#discord_api-User) |  |  |
 | nick | [string](#string) |  |  |
 | roles | [uint64](#uint64) | repeated |  |
 | joined_at | [string](#string) |  |  |
@@ -300,7 +300,7 @@ Source: https://discord.com/developers/docs/resources/guild#guild-member-object
 
 
 
-<a name="discord_api.Message"></a>
+<a name="discord_api-Message"></a>
 
 ### Message
 Source: https://discord.com/developers/docs/resources/channel#message-object
@@ -311,36 +311,36 @@ Source: https://discord.com/developers/docs/resources/channel#message-object
 | id | [uint64](#uint64) |  |  |
 | channel_id | [uint64](#uint64) |  |  |
 | guild_id | [uint64](#uint64) |  |  |
-| author | [User](#discord_api.User) |  |  |
-| member | [GuildMember](#discord_api.GuildMember) |  |  |
+| author | [User](#discord_api-User) |  |  |
+| member | [GuildMember](#discord_api-GuildMember) |  |  |
 | content | [string](#string) |  |  |
 | timestamp | [string](#string) |  |  |
 | edited_timestamp | [string](#string) |  |  |
 | tts | [bool](#bool) |  |  |
 | mention_everyone | [bool](#bool) |  |  |
-| mentions | [User](#discord_api.User) | repeated |  |
+| mentions | [User](#discord_api-User) | repeated |  |
 | mention_roles | [uint64](#uint64) | repeated |  |
 | mention_channels | [uint64](#uint64) | repeated |  |
-| attachments | [Message.Attachment](#discord_api.Message.Attachment) | repeated |  |
-| embeds | [Embed](#discord_api.Embed) | repeated |  |
-| reactions | [Message.Reaction](#discord_api.Message.Reaction) | repeated |  |
+| attachments | [Message.Attachment](#discord_api-Message-Attachment) | repeated |  |
+| embeds | [Embed](#discord_api-Embed) | repeated |  |
+| reactions | [Message.Reaction](#discord_api-Message-Reaction) | repeated |  |
 | nonce | [string](#string) |  |  |
 | pinned | [bool](#bool) |  |  |
 | webhook_id | [uint64](#uint64) |  |  |
-| type | [Message.Type](#discord_api.Message.Type) |  |  |
-| activity | [Message.Activity](#discord_api.Message.Activity) |  |  |
-| application | [Message.Application](#discord_api.Message.Application) |  |  |
-| message_reference | [Message.Reference](#discord_api.Message.Reference) |  |  |
+| type | [Message.Type](#discord_api-Message-Type) |  |  |
+| activity | [Message.Activity](#discord_api-Message-Activity) |  |  |
+| application | [Message.Application](#discord_api-Message-Application) |  |  |
+| message_reference | [Message.Reference](#discord_api-Message-Reference) |  |  |
 | flags | [int32](#int32) |  |  |
-| stickers | [Message.Sticker](#discord_api.Message.Sticker) | repeated |  |
-| referenced_message | [Message](#discord_api.Message) |  | interaction: not implemented |
+| stickers | [Message.Sticker](#discord_api-Message-Sticker) | repeated |  |
+| referenced_message | [Message](#discord_api-Message) |  | interaction: not implemented |
 
 
 
 
 
 
-<a name="discord_api.Message.Activity"></a>
+<a name="discord_api-Message-Activity"></a>
 
 ### Message.Activity
 
@@ -348,7 +348,7 @@ Source: https://discord.com/developers/docs/resources/channel#message-object
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [Message.Activity.Type](#discord_api.Message.Activity.Type) |  |  |
+| type | [Message.Activity.Type](#discord_api-Message-Activity-Type) |  |  |
 | party_id | [string](#string) |  |  |
 
 
@@ -356,7 +356,7 @@ Source: https://discord.com/developers/docs/resources/channel#message-object
 
 
 
-<a name="discord_api.Message.Application"></a>
+<a name="discord_api-Message-Application"></a>
 
 ### Message.Application
 
@@ -375,7 +375,7 @@ Source: https://discord.com/developers/docs/resources/channel#message-object
 
 
 
-<a name="discord_api.Message.Attachment"></a>
+<a name="discord_api-Message-Attachment"></a>
 
 ### Message.Attachment
 
@@ -396,7 +396,7 @@ Source: https://discord.com/developers/docs/resources/channel#message-object
 
 
 
-<a name="discord_api.Message.ChannelMention"></a>
+<a name="discord_api-Message-ChannelMention"></a>
 
 ### Message.ChannelMention
 
@@ -406,7 +406,7 @@ Source: https://discord.com/developers/docs/resources/channel#message-object
 | ----- | ---- | ----- | ----------- |
 | id | [uint64](#uint64) |  |  |
 | guild_id | [uint64](#uint64) |  |  |
-| type | [Channel.Type](#discord_api.Channel.Type) |  |  |
+| type | [Channel.Type](#discord_api-Channel-Type) |  |  |
 | name | [string](#string) |  |  |
 
 
@@ -414,7 +414,7 @@ Source: https://discord.com/developers/docs/resources/channel#message-object
 
 
 
-<a name="discord_api.Message.Reaction"></a>
+<a name="discord_api-Message-Reaction"></a>
 
 ### Message.Reaction
 
@@ -424,14 +424,14 @@ Source: https://discord.com/developers/docs/resources/channel#message-object
 | ----- | ---- | ----- | ----------- |
 | count | [int32](#int32) |  |  |
 | me | [bool](#bool) |  |  |
-| emoji | [Emoji](#discord_api.Emoji) |  |  |
+| emoji | [Emoji](#discord_api-Emoji) |  |  |
 
 
 
 
 
 
-<a name="discord_api.Message.Reference"></a>
+<a name="discord_api-Message-Reference"></a>
 
 ### Message.Reference
 
@@ -449,7 +449,7 @@ Source: https://discord.com/developers/docs/resources/channel#message-object
 
 
 
-<a name="discord_api.Message.Sticker"></a>
+<a name="discord_api-Message-Sticker"></a>
 
 ### Message.Sticker
 
@@ -464,14 +464,14 @@ Source: https://discord.com/developers/docs/resources/channel#message-object
 | tags | [string](#string) |  |  |
 | asset | [string](#string) |  |  |
 | preview_asset | [string](#string) |  |  |
-| format_type | [Message.Sticker.Type](#discord_api.Message.Sticker.Type) |  |  |
+| format_type | [Message.Sticker.Type](#discord_api-Message-Sticker-Type) |  |  |
 
 
 
 
 
 
-<a name="discord_api.Role"></a>
+<a name="discord_api-Role"></a>
 
 ### Role
 Source: https://discord.com/developers/docs/topics/permissions#role-object
@@ -487,14 +487,14 @@ Source: https://discord.com/developers/docs/topics/permissions#role-object
 | permissions | [string](#string) |  |  |
 | managed | [bool](#bool) |  |  |
 | mentionable | [bool](#bool) |  |  |
-| tags | [Role.Tag](#discord_api.Role.Tag) | repeated |  |
+| tags | [Role.Tag](#discord_api-Role-Tag) | repeated |  |
 
 
 
 
 
 
-<a name="discord_api.Role.Tag"></a>
+<a name="discord_api-Role-Tag"></a>
 
 ### Role.Tag
 
@@ -511,7 +511,7 @@ Source: https://discord.com/developers/docs/topics/permissions#role-object
 
 
 
-<a name="discord_api.SendChannelMessageRequest"></a>
+<a name="discord_api-SendChannelMessageRequest"></a>
 
 ### SendChannelMessageRequest
 
@@ -521,14 +521,14 @@ Source: https://discord.com/developers/docs/topics/permissions#role-object
 | ----- | ---- | ----- | ----------- |
 | channel_id | [uint64](#uint64) |  |  |
 | content | [string](#string) |  |  |
-| embed | [Embed](#discord_api.Embed) |  |  |
+| embed | [Embed](#discord_api-Embed) |  |  |
 
 
 
 
 
 
-<a name="discord_api.SendChannelMessageResponse"></a>
+<a name="discord_api-SendChannelMessageResponse"></a>
 
 ### SendChannelMessageResponse
 
@@ -536,14 +536,14 @@ Source: https://discord.com/developers/docs/topics/permissions#role-object
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| message | [Message](#discord_api.Message) |  |  |
+| message | [Message](#discord_api-Message) |  |  |
 
 
 
 
 
 
-<a name="discord_api.SendDirectMessageRequest"></a>
+<a name="discord_api-SendDirectMessageRequest"></a>
 
 ### SendDirectMessageRequest
 
@@ -553,14 +553,14 @@ Source: https://discord.com/developers/docs/topics/permissions#role-object
 | ----- | ---- | ----- | ----------- |
 | user_id | [uint64](#uint64) |  |  |
 | content | [string](#string) |  |  |
-| embed | [Embed](#discord_api.Embed) |  |  |
+| embed | [Embed](#discord_api-Embed) |  |  |
 
 
 
 
 
 
-<a name="discord_api.SendDirectMessageResponse"></a>
+<a name="discord_api-SendDirectMessageResponse"></a>
 
 ### SendDirectMessageResponse
 
@@ -568,14 +568,14 @@ Source: https://discord.com/developers/docs/topics/permissions#role-object
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| message | [Message](#discord_api.Message) |  |  |
+| message | [Message](#discord_api-Message) |  |  |
 
 
 
 
 
 
-<a name="discord_api.User"></a>
+<a name="discord_api-User"></a>
 
 ### User
 Source: https://discord.com/developers/docs/resources/user#user-object
@@ -604,7 +604,7 @@ Source: https://discord.com/developers/docs/resources/user#user-object
 
 
 
-<a name="discord_api.Channel.Type"></a>
+<a name="discord_api-Channel-Type"></a>
 
 ### Channel.Type
 
@@ -621,7 +621,7 @@ Source: https://discord.com/developers/docs/resources/user#user-object
 
 
 
-<a name="discord_api.Message.Activity.Type"></a>
+<a name="discord_api-Message-Activity-Type"></a>
 
 ### Message.Activity.Type
 
@@ -636,7 +636,7 @@ Source: https://discord.com/developers/docs/resources/user#user-object
 
 
 
-<a name="discord_api.Message.Sticker.Type"></a>
+<a name="discord_api-Message-Sticker-Type"></a>
 
 ### Message.Sticker.Type
 
@@ -650,7 +650,7 @@ Source: https://discord.com/developers/docs/resources/user#user-object
 
 
 
-<a name="discord_api.Message.Type"></a>
+<a name="discord_api-Message-Type"></a>
 
 ### Message.Type
 
@@ -681,16 +681,16 @@ Source: https://discord.com/developers/docs/resources/user#user-object
 
 
 
-<a name="discord_api.DiscordApi"></a>
+<a name="discord_api-DiscordApi"></a>
 
 ### DiscordApi
 Provides access to the Discord API
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| SendChannelMessage | [SendChannelMessageRequest](#discord_api.SendChannelMessageRequest) | [SendChannelMessageResponse](#discord_api.SendChannelMessageResponse) | Send a message to a guild channel |
-| SendDirectMessage | [SendDirectMessageRequest](#discord_api.SendDirectMessageRequest) | [SendDirectMessageResponse](#discord_api.SendDirectMessageResponse) | Send a direct message to a user |
-| GetGuildChannels | [GetGuildChannelsRequest](#discord_api.GetGuildChannelsRequest) | [GetGuildChannelsResponse](#discord_api.GetGuildChannelsResponse) | Get the list of channel for a guild |
+| SendChannelMessage | [SendChannelMessageRequest](#discord_api-SendChannelMessageRequest) | [SendChannelMessageResponse](#discord_api-SendChannelMessageResponse) | Send a message to a guild channel |
+| SendDirectMessage | [SendDirectMessageRequest](#discord_api-SendDirectMessageRequest) | [SendDirectMessageResponse](#discord_api-SendDirectMessageResponse) | Send a direct message to a user |
+| GetGuildChannels | [GetGuildChannelsRequest](#discord_api-GetGuildChannelsRequest) | [GetGuildChannelsResponse](#discord_api-GetGuildChannelsResponse) | Get the list of channel for a guild |
 
 
 
