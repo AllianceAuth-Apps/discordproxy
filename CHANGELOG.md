@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - yyyy-mm-dd
 
+## [1.5.0] - 2026-06-24
+
+### Changed
+
+- BREAKING CHANGE: Dropped support for Python 3.9
+- Added support for Python 3.13
+
+### Fixed
+
+- Requires installing the voice module (#6)
+
 ## [1.4.0] - 2025-07-09
 
 ### Changed
