@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - yyyy-mm-dd
 
+## [1.5.0] - TBD
+
+### Update notes
+
+If you have applied the workaround and installed py-cord with voice, here is how you can remove the voice part again, which is not required for discordproxy to function:
+
+```sh
+pip uninstall davey
+pip install --force-reinstall py-cord
+```
+
+Finally restart the discordproxy server.
+
+### Changed
+
+- BREAKING CHANGE: Dropped support for Python 3.9
+- Added support for Python 3.13
+
+### Fixed
+
+- Requires installing the voice module (#6)
+
 ## [1.4.0] - 2025-07-09
 
 ### Changed
