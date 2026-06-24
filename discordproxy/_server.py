@@ -8,7 +8,6 @@ import signal
 import sys
 import traceback
 
-import discord
 import grpc
 from discord.errors import ClientException
 
@@ -19,7 +18,6 @@ from discordproxy._discord_client import DiscordClient
 from discordproxy.discord_api_pb2_grpc import add_DiscordApiServicer_to_server
 
 logger = logging.getLogger(__name__)
-discord.VoiceClient.warn_nacl = False
 
 
 async def run_server(
