@@ -21,6 +21,26 @@ def obj_dict_by_id(obj_list) -> dict:
     return {obj["id"]: obj for obj in obj_list}
 
 
+def create_discord_role(guild_id: int, role_id: int) -> discord.Role:
+    return discord.Role(
+        state=mock_state,
+        guild=guild_id,
+        data={
+            "id": role_id,
+            "name": f"Role #{role_id}",
+            "colors": {
+                "primary_color": 1_000_000 + role_id,
+            },
+            "hoist": False,
+            "position": 1,
+            "permissions": 66321471,
+            "managed": False,
+            "mentionable": True,
+            "flags": 0,
+        },
+    )
+
+
 USERS_DATA = [
     {
         # this is the bot used by discordproxy on Discord
@@ -113,21 +133,9 @@ CHANNELS = obj_list_2_dict(
 CHANNELS_FORBIDDEN = [2100]
 ROLES = obj_list_2_dict(
     [
-        discord.Role(
-            state=mock_state,
-            guild=GUILDS[3001],
-            data={"id": 1, "name": "role-1"},
-        ),
-        discord.Role(
-            state=mock_state,
-            guild=GUILDS[3001],
-            data={"id": 2, "name": "role-2"},
-        ),
-        discord.Role(
-            state=mock_state,
-            guild=GUILDS[3001],
-            data={"id": 3, "name": "role-3"},
-        ),
+        create_discord_role(GUILDS[3001], 1),
+        create_discord_role(GUILDS[3001], 2),
+        create_discord_role(GUILDS[3001], 3),
     ]
 )
 MEMBERS_DATA = [{"user": USERS_DATA_BY_ID[1001], "roles": [1, 2]}]
