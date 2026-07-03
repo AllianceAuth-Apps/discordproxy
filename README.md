@@ -4,10 +4,10 @@ Proxy server for accessing the Discord API via gRPC
 
 [![release](https://img.shields.io/pypi/v/discordproxy?label=release)](https://pypi.org/project/discordproxy/)
 [![python](https://img.shields.io/pypi/pyversions/discordproxy)](https://pypi.org/project/discordproxy/)
-[![pipeline](https://gitlab.com/ErikKalkoken/discordproxy/badges/master/pipeline.svg)](https://gitlab.com/ErikKalkoken/discordproxy/-/pipelines)
-[![codecov](https://codecov.io/gl/ErikKalkoken/discordproxy/branch/master/graph/badge.svg?token=JJN735H9XV)](https://codecov.io/gl/ErikKalkoken/discordproxy)
+[![CI/CD Pipeline](https://github.com/AllianceAuth-Apps/discordproxy/actions/workflows/ci-cd.yaml/badge.svg)](https://github.com/AllianceAuth-Apps/discordproxy/actions/workflows/ci-cd.yaml)
+[![codecov](https://codecov.io/github/AllianceAuth-Apps/discordproxy/graph/badge.svg?token=MODk6IqJmx)](https://codecov.io/github/AllianceAuth-Apps/discordproxy)
 [![Documentation Status](https://readthedocs.org/projects/discordproxy/badge/?version=latest)](https://discordproxy.readthedocs.io/en/latest/?badge=latest)
-[![license](https://img.shields.io/badge/license-MIT-green)](https://gitlab.com/ErikKalkoken/discordproxy/-/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-green)](https://github.com/AllianceAuth-Apps/discordproxy#MIT-1-ov-file)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![chat](https://img.shields.io/discord/790364535294132234)](https://discord.gg/zmh52wnfvM)

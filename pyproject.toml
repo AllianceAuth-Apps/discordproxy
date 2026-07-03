@@ -8,7 +8,7 @@ dynamic = ["version", "description"]
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
-authors = [{ name = "Erik Kalkoken", email = "kalkoken87@gmail.com" }]
+authors = [{ name = "Erik Kalkoken", email = "erik.kalkoken@gmail.com" }]
 classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -27,8 +27,8 @@ discordproxyserver = "discordproxy._server:main"
 
 [project.urls]
 Documentation = "https://django-eveuniverse.readthedocs.io/en/latest/"
-Source = "https://gitlab.com/ErikKalkoken/discordproxy"
-Tracker = "https://gitlab.com/ErikKalkoken/discordproxy/issues"
+Source = "https://github.com/AllianceAuth-Apps/discordproxy"
+Tracker = "https://github.com/AllianceAuth-Apps/discordproxy/issues"
 
 [tool.flit.module]
 name = "discordproxy"
